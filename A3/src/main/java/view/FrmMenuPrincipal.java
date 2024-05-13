@@ -6,7 +6,7 @@ package view;
 
 /**
  *
- * @author 1072410915
+ * @author Tulio
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
@@ -26,59 +26,57 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jCadastroDeAmigos = new javax.swing.JMenu();
-        jCadAmigos = new javax.swing.JMenuItem();
-        jCadastroDeFerramentas = new javax.swing.JMenu();
-        jCadFerramentas = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItemFerramentas = new javax.swing.JMenuItem();
+        jMenuItemCadastroAmigos = new javax.swing.JMenuItem();
+        jMenuItemRelatorio = new javax.swing.JMenuItem();
+        jMenuItemSair = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+
+        jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
-        );
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        jLabel1.setText("EMPRÉSTIMOS");
 
-        jCadastroDeAmigos.setText("Cadastro de Amigos");
-        jCadastroDeAmigos.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setText("Opções");
+
+        jMenuItemFerramentas.setText("Ferramentas");
+        jMenuItemFerramentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCadastroDeAmigosActionPerformed(evt);
+                jMenuItemFerramentasActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItemFerramentas);
 
-        jCadAmigos.setText("Cadastro de Amigos");
-        jCadAmigos.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemCadastroAmigos.setText("Amigos");
+        jMenuItemCadastroAmigos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCadAmigosActionPerformed(evt);
+                jMenuItemCadastroAmigosActionPerformed(evt);
             }
         });
-        jCadastroDeAmigos.add(jCadAmigos);
+        jMenu1.add(jMenuItemCadastroAmigos);
 
-        jMenuBar1.add(jCadastroDeAmigos);
+        jMenuItemRelatorio.setText("Relatorio");
+        jMenu1.add(jMenuItemRelatorio);
 
-        jCadastroDeFerramentas.setText("Cadastro de Ferramentas");
-        jCadastroDeFerramentas.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemSair.setText("Sair");
+        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCadastroDeFerramentasActionPerformed(evt);
+                jMenuItemSairActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItemSair);
 
-        jCadFerramentas.setText("Cadastro de Ferramentas");
-        jCadFerramentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCadFerramentasActionPerformed(evt);
-            }
-        });
-        jCadastroDeFerramentas.add(jCadFerramentas);
+        jMenuBar1.add(jMenu1);
 
-        jMenuBar1.add(jCadastroDeFerramentas);
+        jMenu2.setText("Sobre");
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -86,37 +84,39 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(jLabel1)
+                .addContainerGap(275, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(281, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(718, 376));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCadastroDeAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadastroDeAmigosActionPerformed
+    private void jMenuItemFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFerramentasActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jCadastroDeAmigosActionPerformed
+        FrmCadastroFerramentas objeto = new FrmCadastroFerramentas();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_jMenuItemFerramentasActionPerformed
 
-    private void jCadastroDeFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadastroDeFerramentasActionPerformed
+    private void jMenuItemCadastroAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroAmigosActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jCadastroDeFerramentasActionPerformed
+        FrmCadastroAmigos objeto = new FrmCadastroAmigos();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCadastroAmigosActionPerformed
 
-    private void jCadAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadAmigosActionPerformed
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         // TODO add your handling code here:
-        FrmCadastroAmigo cadAmi = new FrmCadastroAmigo();
-        cadAmi.setVisible(true);
-    }//GEN-LAST:event_jCadAmigosActionPerformed
-
-    private void jCadFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadFerramentasActionPerformed
-        // TODO add your handling code here:
-        FrmCadastroFerramentas cadFer = new FrmCadastroFerramentas();
-        cadFer.setVisible(true);
-    }//GEN-LAST:event_jCadFerramentasActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +144,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -154,11 +155,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem jCadAmigos;
-    private javax.swing.JMenuItem jCadFerramentas;
-    private javax.swing.JMenu jCadastroDeAmigos;
-    private javax.swing.JMenu jCadastroDeFerramentas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItemCadastroAmigos;
+    private javax.swing.JMenuItem jMenuItemFerramentas;
+    private javax.swing.JMenuItem jMenuItemRelatorio;
+    private javax.swing.JMenuItem jMenuItemSair;
     // End of variables declaration//GEN-END:variables
 }
