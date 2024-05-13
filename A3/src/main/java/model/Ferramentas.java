@@ -8,7 +8,7 @@ package model;
  *
  * @author 1072410915
  */
-public class Titiu {
+public class Ferramentas {
     
     //teste
 }
