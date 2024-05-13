@@ -29,7 +29,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jCadastroDeAmigos = new javax.swing.JMenu();
+        jCadAmigos = new javax.swing.JMenuItem();
         jCadastroDeFerramentas = new javax.swing.JMenu();
+        jCadFerramentas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,9 +52,32 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 jCadastroDeAmigosActionPerformed(evt);
             }
         });
+
+        jCadAmigos.setText("Cadastro de Amigos");
+        jCadAmigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCadAmigosActionPerformed(evt);
+            }
+        });
+        jCadastroDeAmigos.add(jCadAmigos);
+
         jMenuBar1.add(jCadastroDeAmigos);
 
         jCadastroDeFerramentas.setText("Cadastro de Ferramentas");
+        jCadastroDeFerramentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCadastroDeFerramentasActionPerformed(evt);
+            }
+        });
+
+        jCadFerramentas.setText("Cadastro de Ferramentas");
+        jCadFerramentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCadFerramentasActionPerformed(evt);
+            }
+        });
+        jCadastroDeFerramentas.add(jCadFerramentas);
+
         jMenuBar1.add(jCadastroDeFerramentas);
 
         setJMenuBar(jMenuBar1);
@@ -77,6 +102,22 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         
         cadAmi.setVisible(true);
     }//GEN-LAST:event_jCadastroDeAmigosActionPerformed
+
+    private void jCadastroDeFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadastroDeFerramentasActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jCadastroDeFerramentasActionPerformed
+
+    private void jCadAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadAmigosActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jCadAmigosActionPerformed
+
+    private void jCadFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadFerramentasActionPerformed
+        // TODO add your handling code here:
+        FrmCadastroFerramentas cadFer = new FrmCadastroFerramentas();
+        cadFer.setVisible(true);
+    }//GEN-LAST:event_jCadFerramentasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +155,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jCadAmigos;
+    private javax.swing.JMenuItem jCadFerramentas;
     private javax.swing.JMenu jCadastroDeAmigos;
     private javax.swing.JMenu jCadastroDeFerramentas;
     private javax.swing.JMenuBar jMenuBar1;
