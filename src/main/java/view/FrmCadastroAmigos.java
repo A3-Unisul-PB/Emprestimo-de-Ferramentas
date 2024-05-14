@@ -22,13 +22,11 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jNome = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         JTFFerramenta = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         JTFMarca = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        JTFCusto = new javax.swing.JTextField();
         b_cadastrar = new javax.swing.JButton();
         b_cancelar = new javax.swing.JButton();
         b_editar = new javax.swing.JButton();
@@ -37,7 +35,7 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jNome.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -45,16 +43,14 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Ferramenta", "Marca", "Preço"
+                "Nome", "Telefone", "ID"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jNome);
 
         jLabel1.setText("Nome:");
 
         jLabel2.setText("Telefone:");
-
-        jLabel3.setText("Preço");
 
         b_cadastrar.setText("Cadastrar");
 
@@ -83,10 +79,6 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JTFFerramenta))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JTFCusto))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,11 +109,7 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(JTFMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(JTFCusto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(52, 52, 52)
                         .addComponent(b_cancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(b_cadastrar)
@@ -178,7 +166,6 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JTFCusto;
     private javax.swing.JTextField JTFFerramenta;
     private javax.swing.JTextField JTFMarca;
     private javax.swing.JButton b_apagar;
@@ -187,9 +174,8 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
     private javax.swing.JButton b_editar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JTable jNome;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
