@@ -363,7 +363,7 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
         for (Ferramenta a : minhaLista) {
             modelo.addRow(new Object[]{
                 a.getId(),
-                a.getFerramenta(),
+                a.getNome(),
                 a.getMarca(),
                 a.getPreco(),
             });

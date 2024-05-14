@@ -7,7 +7,7 @@ public class Ferramenta {
 
     // Atributos
     private int id;
-    private String ferramenta;
+    private String nome;
     private String marca;
     private double preco;
     FerramentaDAO dao;
@@ -18,9 +18,9 @@ public class Ferramenta {
     }
 
     // Construtor com parâmetro
-    public Ferramenta(int id, String ferramenta, String marca, double preco) {
+    public Ferramenta(int id, String nome, String marca, double preco) {
         this.id = id;
-        this.ferramenta = ferramenta;
+        this.nome = nome;
         this.marca = marca;
         this.preco = preco;
         dao = new FerramentaDAO();
@@ -35,15 +35,15 @@ public class Ferramenta {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public String getFerramenta() {
-        return ferramenta;
+
+    public String getNome() {
+        return nome;
     }
 
-    public void setFerramenta(String Ferramenta) {
-        this.ferramenta = ferramenta;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    
+
     public String getMarca() {
         return marca;
     }
@@ -62,7 +62,7 @@ public class Ferramenta {
 
     @Override
     public String toString() {
-        return super.toString() + "ferramenta=" + ferramenta + ", marca=" + marca + "preco=" + preco;
+        return super.toString() + "ferramenta=" + nome + ", marca=" + marca + "preco=" + preco;
     }
 
     public ArrayList<Ferramenta> getMinhaLista() {
