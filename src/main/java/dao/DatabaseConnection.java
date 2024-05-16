@@ -15,7 +15,7 @@ public class DatabaseConnection {
                 Class.forName(driver);
 
                 String server = "localhost"; 
-                String database = "db_a3";
+                String database = "db_amigos";
                 String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
                 String user = "root";
                 String password = "Unisul@1520";
