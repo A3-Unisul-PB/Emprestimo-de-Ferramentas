@@ -1,7 +1,9 @@
 package view;
 
+import java.util.ArrayList;
 import model.Amigo;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class FrmCadastroAmigos extends javax.swing.JFrame {
 
@@ -10,6 +12,7 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
     public FrmCadastroAmigos() {
         initComponents();
         this.objetoamigo = new Amigo(); // carrega objeto vazio de ferramenta
+        this.carregaTabela();
     }
 
     /**
@@ -43,7 +46,7 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nome", "Telefone", "ID"
+                "ID", "Telefone", "Nome"
             }
         ));
         jScrollPane2.setViewportView(jNome);
@@ -69,6 +72,11 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
         b_editar.setText("Editar");
 
         b_apagar.setText("Apagar");
+        b_apagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_apagarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("CADASTRO DE AMIGOS");
 
@@ -137,9 +145,8 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
     private void b_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cadastrarActionPerformed
         // TODO add your handling code here:
         try {
-// recebendo e validando dados da interface gráfica.
+            // recebendo e validando dados da interface gráfica.
             String nome = "";
-            int id = 0;
             String telefone = "";
 
             if (this.JTFNome.getText().length() < 2) {
@@ -147,32 +154,42 @@ public class FrmCadastroAmigos extends javax.swing.JFrame {
             } else {
                 nome = this.JTFNome.getText();
             }
-            if (this.JTFTelefone.getText().length() < 2) {
-                throw new Mensagem("Telefone tem que ter 11 caracteres.");
+
+            if (this.JTFTelefone.getText().length() < 11) {
+                throw new Mensagem("Telefone deve conter ao menos 11 caracteres.");
             } else {
-                id = Integer.parseInt(this.JTFTelefone.getText());
+                telefone = (this.JTFTelefone.getText());
             }
-// envia os dados para o Controlador cadastrar
-            if (this.objetoamigo.insertAmigoBD(nome, telefone )) {
-                JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
-// limpa campos da interface
+
+            System.out.println(nome);
+            System.out.println(telefone);
+
+            // envia os dados para o Controlador cadastrar
+            if (this.objetoamigo.insertAmigoBD(nome, telefone)) {
+                JOptionPane.showMessageDialog(null, "Amigo Cadastrada com Sucesso!");
+                // limpa campos da interface
                 this.JTFNome.setText("");
                 this.JTFTelefone.setText("");
             }
-//Exibieno console o amigo cadastrado
+            //Exibie no console o ferramenta cadastrado
             System.out.println(this.objetoamigo.getMinhaLista().toString());
+
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
         }
-    
+        this.carregaTabela();
     }//GEN-LAST:event_b_cadastrarActionPerformed
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    private void b_apagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_apagarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_apagarActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -184,33 +201,30 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastroAmigos.class  
+            java.util.logging.Logger.getLogger(FrmCadastroAmigos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrmCadastroAmigos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastroAmigos.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrmCadastroAmigos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastroAmigos.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCadastroAmigos.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrmCadastroAmigos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FrmCadastroAmigos().setVisible(true);
             }
@@ -230,4 +244,17 @@ public static void main(String args[]) {
     private javax.swing.JTable jNome;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    private void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.jNome.getModel();
+        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
+        // Carrega a lista de objetos ferramenta
+        ArrayList<Amigo> minhaLista = objetoamigo.getMinhaLista();
+        for (Amigo a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getNome(),
+                a.getTelefone()});
+        }
+    }
 }
