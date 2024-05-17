@@ -119,7 +119,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemCadastroAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroAmigosActionPerformed
         // TODO add your handling code here:
-        FrmCadastroAmigos objeto = new FrmCadastroAmigos();
+        FrmCadastrarAmigo objeto = new FrmCadastrarAmigo();
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroAmigosActionPerformed
 
@@ -130,7 +130,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     private void JMenuItemGerenciarAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemGerenciarAmigosActionPerformed
         // TODO add your handling code here:
-        FrmGerenciarAmigos objeto = new FrmGerenciarAmigos();
+        FrmGerenciarAmigo objeto = new FrmGerenciarAmigo();
         objeto.setVisible(true);
     }//GEN-LAST:event_JMenuItemGerenciarAmigosActionPerformed
 
