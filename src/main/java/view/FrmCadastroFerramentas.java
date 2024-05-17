@@ -11,13 +11,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class FrmCadastroFerramentas extends javax.swing.JFrame {
     
-    // cria o vínculo com o Ferramenta
     private Ferramenta objetoferramenta; 
     private Connection conn;
     
     public FrmCadastroFerramentas() {
         initComponents();
-        this.objetoferramenta = new Ferramenta(); // carrega objeto vazio de Ferramenta
+        this.objetoferramenta = new Ferramenta();
         this.carregaTabela();
     }
 
@@ -189,9 +188,7 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
     }//GEN-LAST:event_b_cancelarActionPerformed
 
     private void b_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cadastrarActionPerformed
-        // TODO add your handling code here:
         try {
-            // recebendo e validando dados da interface gráfica.
             String ferramenta = "";
             String marca = "";
             double preco = 0.0;
@@ -214,7 +211,6 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
                 preco = Double.parseDouble(this.JTFCusto.getText());
             }
 
-            // envia os dados para o Controlador cadastrar
             if (this.objetoferramenta.insertFerramentaBD(ferramenta, marca, preco)) {
                 JOptionPane.showMessageDialog(null, "Ferramenta Cadastrada com Sucesso!");
                 // limpa campos da interface
@@ -222,9 +218,6 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
                 this.JTFMarca.setText("");
                 this.JTFCusto.setText("");
             }
-            //Exibie no console o ferramenta cadastrado
-            System.out.println(this.objetoferramenta.getMinhaLista().toString());
-
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
@@ -254,9 +247,7 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
 }
     
     private void b_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_alterarActionPerformed
-        // TODO add your handling code here:
         try {
-            // recebendo e validando dados da interface grafica.
             int id = 0;
             String ferramenta = "";
             String marca = "";
@@ -286,63 +277,48 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
                 id = Integer.parseInt(this.JTableFerramentas.getValueAt(this.JTableFerramentas.getSelectedRow(), 0).toString());
             }
 
-            // envia os dados para a ferramenta processar
             if (this.objetoferramenta.updateFerramentaBD(id, ferramenta, marca, preco)) {
-                // limpa os campos
                 this.JTFFerramenta.setText("");
                 this.JTFMarca.setText("");
                 this.JTFCusto.setText("");
                 JOptionPane.showMessageDialog(null, "Ferramenta alterada com Sucesso!");
-
             }
-            // Exibe no console a ferramenta cadastrada
-            System.out.println(this.objetoferramenta.getMinhaLista().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
         } finally {
-            // atualiza a tabela.
             carregaTabela();
         }
     }//GEN-LAST:event_b_alterarActionPerformed
 
     private void b_apagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_apagarActionPerformed
-        // TODO add your handling code here:
         try {
-            // validando dados da interface gráfica.
             int id = 0;
             if (this.JTableFerramentas.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione uma ferramenta para APAGAR");
             } else {
                 id = Integer.parseInt(this.JTableFerramentas.getValueAt(this.JTableFerramentas.getSelectedRow(), 0).toString());
             }
-
-            // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
             int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esta ferramenta?");
 
-            if (respostaUsuario == 0) {// clicou em SIM
-                // envia os dados para o Ferramenta processar
+            if (respostaUsuario == 0) {
                 if (this.objetoferramenta.deleteFerramentaBD(id)) {
-                    // limpa os campos
                     this.JTFFerramenta.setText("");
                     this.JTFMarca.setText("");
                     this.JTFCusto.setText("");
                     JOptionPane.showMessageDialog(rootPane, "Ferramenta apagada com sucesso!");
                 }
             }
-            // atualiza a tabela.
             System.out.println(this.objetoferramenta.getMinhaLista().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
-            // atualiza a tabela.
             carregaTabela();
         }
     }//GEN-LAST:event_b_apagarActionPerformed
 
     private void JTableFerramentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableFerramentasMouseClicked
-        // TODO add your handling code here:
         if (this.JTableFerramentas.getSelectedRow() != -1) {
             String ferramenta = this.JTableFerramentas.getValueAt(this.JTableFerramentas.getSelectedRow(), 1).toString();
             String marca = this.JTableFerramentas.getValueAt(this.JTableFerramentas.getSelectedRow(), 2).toString();
@@ -357,8 +333,7 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
     
     public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableFerramentas.getModel();
-        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos ferramenta
+        modelo.setNumRows(0);
         ArrayList<Ferramenta> minhaLista = objetoferramenta.getMinhaLista();
         for (Ferramenta a : minhaLista) {
             modelo.addRow(new Object[]{

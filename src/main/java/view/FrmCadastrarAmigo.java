@@ -6,9 +6,7 @@ import model.Amigo;
 public class FrmCadastrarAmigo extends javax.swing.JFrame {
 
     private Amigo objetoamigo; 
-    /**
-     * Creates new form FrmGerenciarAmigos
-     */
+
     public FrmCadastrarAmigo() {
         initComponents();
         this.objetoamigo = new Amigo();
@@ -97,7 +95,6 @@ public class FrmCadastrarAmigo extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         try {
-            // recebendo e validando dados da interface gráfica.
             String nome = "";
             String telefone = "";
 

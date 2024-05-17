@@ -7,11 +7,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class FrmGerenciarAmigo extends javax.swing.JFrame {
 
-    private Amigo objetoamigo; // cria o vínculo com o Ferramenta
+    private Amigo objetoamigo;
 
     public FrmGerenciarAmigo() {
         initComponents();
-        this.objetoamigo = new Amigo(); // carrega objeto vazio de ferramenta
+        this.objetoamigo = new Amigo();
         this.carregaTabela();
     }
 
@@ -140,7 +140,6 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelarActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_b_cancelarActionPerformed
 
@@ -182,7 +181,6 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            // recebendo e validando dados da interface grafica.
             int id = 0;
             String nome = "";
             String telefone = "";
@@ -211,22 +209,18 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
                 id = Integer.parseInt(this.tabela.getValueAt(this.tabela.getSelectedRow(), 0).toString());
             }
 
-            // envia os dados para a ferramenta processar
             if (this.objetoamigo.updateAmigoBD(id, nome, telefone)) {
-                // limpa os campos
                 this.inputNome.setText("");
                 this.inputTelefone.setText("");
                 JOptionPane.showMessageDialog(null, "Amigo editado com sucesso!");
 
             }
-            // Exibe no console a ferramenta cadastrada
             System.out.println(this.objetoamigo.getMinhaLista().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
         } finally {
-            // atualiza a tabela.
             carregaTabela();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -293,8 +287,7 @@ public class FrmGerenciarAmigo extends javax.swing.JFrame {
 
     private void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
-        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos ferramenta
+        modelo.setNumRows(0);
         ArrayList<Amigo> minhaLista = objetoamigo.getMinhaLista();
         for (Amigo a : minhaLista) {
             modelo.addRow(new Object[]{

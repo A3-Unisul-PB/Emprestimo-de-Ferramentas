@@ -5,18 +5,15 @@ import java.util.ArrayList;
 
 public class Amigo {
 
-    // Atributos
     private int id;
     private String nome;
     private String telefone;
     AmigoDAO dao;
 
-    // Construtor de Objeto Vazio
     public Amigo() {
         this(0, "", "");
     }
 
-    // Construtor com parâmetro
     public Amigo (int id, String nome, String telefone) {
         this.id = id;
         this.nome = nome;
@@ -24,8 +21,6 @@ public class Amigo {
         dao = new AmigoDAO();
     }
 
-    // Métodos GET e SET
-    
     public int getId() {
         return id;
     }

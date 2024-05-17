@@ -1,18 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
-/**
- *
- * @author Tulio
- */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmMenuPrincipal
-     */
     public FrmMenuPrincipal() {
         initComponents();
     }
@@ -118,18 +107,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemFerramentasActionPerformed
 
     private void jMenuItemCadastroAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroAmigosActionPerformed
-        // TODO add your handling code here:
         FrmCadastrarAmigo objeto = new FrmCadastrarAmigo();
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastroAmigosActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     private void JMenuItemGerenciarAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemGerenciarAmigosActionPerformed
-        // TODO add your handling code here:
         FrmGerenciarAmigo objeto = new FrmGerenciarAmigo();
         objeto.setVisible(true);
     }//GEN-LAST:event_JMenuItemGerenciarAmigosActionPerformed

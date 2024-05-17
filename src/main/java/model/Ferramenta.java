@@ -5,19 +5,16 @@ import java.util.ArrayList;
 
 public class Ferramenta {
 
-    // Atributos
     private int id;
     private String nome;
     private String marca;
     private double preco;
     FerramentaDAO dao;
 
-    // Construtor de Objeto Vazio
     public Ferramenta() {
         this(0, "", "", 0.0);
     }
 
-    // Construtor com parâmetro
     public Ferramenta(int id, String nome, String marca, double preco) {
         this.id = id;
         this.nome = nome;
@@ -26,8 +23,6 @@ public class Ferramenta {
         dao = new FerramentaDAO();
     }
 
-    // Métodos GET e SET
-    
     public int getId() {
         return id;
     }

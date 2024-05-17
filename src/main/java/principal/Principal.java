@@ -1,4 +1,5 @@
 package principal;
+
 import view.FrmMenuPrincipal;
 
 public class Principal {
