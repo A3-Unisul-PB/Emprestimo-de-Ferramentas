@@ -59,11 +59,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Ferramentas");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
-            }
-        });
 
         menuCadastroFerramentas.setText("Cadastrar Ferramentas");
         menuCadastroFerramentas.addActionListener(new java.awt.event.ActionListener() {
@@ -150,11 +145,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         FrmCadastroFerramentas objeto = new FrmCadastroFerramentas();
         objeto.setVisible(true);
     }//GEN-LAST:event_menuCadastroFerramentasActionPerformed
-
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-          FrmGerenciarFerramentas objeto = new FrmGerenciarFerramentas();
-        objeto.setVisible(true);
-    }//GEN-LAST:event_jMenu3ActionPerformed
 
     /**
      * @param args the command line arguments
