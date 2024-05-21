@@ -16,7 +16,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuCadastroAmigos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadrastar Amigos"/>
+                <Property name="text" type="java.lang.String" value="Cadrastar Amigo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadastroAmigosActionPerformed"/>
@@ -39,7 +39,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuCadastroFerramentas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastrar Ferramentas"/>
+                <Property name="text" type="java.lang.String" value="Cadastrar Ferramenta"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadastroFerramentasActionPerformed"/>
@@ -49,6 +49,21 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gerenciar Ferramentas"/>
               </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empr&#xe9;stimos"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuCadastroEmprestimos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastrar Empr&#xe9;stimo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadastroEmprestimosActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -116,7 +131,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace pref="278" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
