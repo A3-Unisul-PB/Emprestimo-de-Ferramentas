@@ -37,7 +37,7 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
         JBEditar = new javax.swing.JButton();
         JBCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("GERENCIADOR DE FERRAMENTA");
