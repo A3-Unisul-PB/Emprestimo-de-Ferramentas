@@ -224,13 +224,13 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
                 nome = this.JTFNome.getText();
             }
 
-            if (this.JTFMarca.getText().length() < 2) {
-                throw new Mensagem("Marca deve conter ao menos 11 caracteres.");
+            if (this.JTFMarca.getText().length() <= 0) {
+                throw new Mensagem("Marca deve conter ao menos 2 caracteres.");
             } else {
                 Marca = this.JTFMarca.getText();
             }
-            if (this.JTFPreco.getText().length() < 2) {
-                throw new Mensagem("Preço deve conter ao menos 11 caracteres.");
+            if (this.JTFPreco.getText().length() <= 0) {
+                throw new Mensagem("Preço deve ser número e maior que zero.");
             } else {
                 Marca = this.JTFPreco.getText();
             }
