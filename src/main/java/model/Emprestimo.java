@@ -5,7 +5,8 @@ package model;
 
 // Importação da classe Date do pacote java.sql.
 import java.sql.Date;
-
+import java.util.ArrayList;
+import dao.EmprestimoDAO;
 /**
  * A classe Emprestimo representa um empréstimo no programa.
  * Ela contém informações sobre o empréstimo e métodos para manipular essas informações.
@@ -15,13 +16,16 @@ public class Emprestimo {
     private int idAmigo;
     private int idFerramenta;
     private Date dataLimite;
+    private boolean concluido;
+    
+    private EmprestimoDAO dao;
 
     /**
      * Construtor padrão que inicializa o objeto Emprestimo com valores padrão.
      */
 
     public Emprestimo() {
-        this(0, 0, 0, null);
+        this(0, 0, 0, null, false);
     }
     
     /**
@@ -31,13 +35,16 @@ public class Emprestimo {
      * @param idAmigo O id do amigo associado ao empréstimo.
      * @param idFerramenta O id da ferramenta associada ao empréstimo.
      * @param dataLimite A data limite do empréstimo.
+     * @param concluido Status do empréstimo.
      */
 
-    public Emprestimo(int id, int nomeAmigo, int nomeFerramenta, Date dataLimite) {
+    public Emprestimo(int id, int nomeAmigo, int nomeFerramenta, Date dataLimite, boolean concluido) {
         this.id = id;
         this.idAmigo = idAmigo;
         this.idFerramenta = idFerramenta;
         this.dataLimite = dataLimite;
+        this.concluido = concluido;
+        dao = new EmprestimoDAO();
     }
 
      // Métodos getter e setter para id, idAmigo, idFerramenta e dataLimite.
@@ -111,5 +118,25 @@ public class Emprestimo {
      */
     public void setDataLimite(Date dataLimite) {
         this.dataLimite = dataLimite;
+    }
+
+    public boolean isConcluido() {
+        return concluido;
+    }
+
+    public void setConcluido(boolean concluido) {
+        this.concluido = concluido;
+    }
+    
+    public ArrayList<Emprestimo> getMinhaLista() {
+        return dao.getMinhaLista();
+    }
+    
+    public String getUserById(int id) {
+        return dao.getUserById(id);
+    }
+    
+    public String getFerramentaById(int id) {
+        return dao.getFerramentaById(id);
     }
 }

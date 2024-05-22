@@ -1,6 +1,10 @@
 package view;
 
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Amigo;
 import model.Emprestimo;
 
 public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
@@ -10,7 +14,8 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
     public FrmCadastrarEmprestimo() {
         initComponents();
         this.objetoEmprestimo = new Emprestimo();
-        this.carregarDados();
+        this.carregarAmigos();
+        this.carregarFerramentas();
     }
 
     /**
@@ -35,18 +40,21 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Empréstimos");
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        dropdownAmigos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pedro", "Matheus", "Tulio", "Heitor", "Thuysa", "JP", "Teste", "Pedro", "Matheus", "Tulio", "Heitor", "Thuysa", "JP", "Teste" }));
         dropdownAmigos.setToolTipText("Nome do Amigo");
         dropdownAmigos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dropdownAmigosActionPerformed(evt);
             }
         });
+        getContentPane().add(dropdownAmigos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 36, -1, -1));
 
         jLabel1.setText("Amigos:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 14, -1, -1));
 
         jLabel2.setText("Ferramentas:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 14, -1, -1));
 
         dropdownFerramentas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Machado", "Broca", "Machadinha", "Parafusadeira", "Chave de Fenda" }));
         dropdownFerramentas.setToolTipText("Ferramenta do empréstimo");
@@ -55,8 +63,10 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
                 dropdownFerramentasActionPerformed(evt);
             }
         });
+        getContentPane().add(dropdownFerramentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 36, -1, -1));
 
         mensagemEmprestimo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(mensagemEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 96, 286, 29));
 
         btnEmprestar.setText("Emprestar");
         btnEmprestar.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +74,7 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
                 btnEmprestarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEmprestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 163, 300, 33));
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -71,107 +82,21 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 214, 300, 33));
 
         inputDate.setText("26/05/2024");
         inputDate.setToolTipText("Data de devolução");
+        getContentPane().add(inputDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 36, -1, -1));
 
         jLabel3.setText("Data Limite:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel2)
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel3))
-                    .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(mensagemEmprestimo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(dropdownAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(dropdownFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(inputDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dropdownAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dropdownFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(mensagemEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 14, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestarActionPerformed
-        try {
-            String amigo = dropdownAmigos.getSelectedItem().toString();
-            String ferramenta = dropdownFerramentas.getSelectedItem().toString();
             
-            mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
-            
-            if(amigo.isEmpty()) {
-                throw new Mensagem("Selecione um amigo para prosseguir!");
-            }
-            
-            if(ferramenta.isEmpty()) {
-                throw new Mensagem("Selecione um amigo para prosseguir!");
-            }
-//            if (this.inputNome.getText().length() < 2) {
-//                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-//            } else {
-//                nome = this.inputNome.getText();
-//            }
-//
-//            if (this.inputTelefone.getText().length() < 11) {
-//                throw new Mensagem("Telefone deve conter ao menos 11 caracteres.");
-//            } else {
-//                telefone = this.inputTelefone.getText();
-//                
-//                String ddd = telefone.substring(0, 2);
-//                String primeirosDigitos = telefone.substring(2, 7);
-//                String ultimosDigitos = telefone.substring(7, 11);
-//                
-//                telefone = "(" + ddd + ") " + primeirosDigitos + "-" + ultimosDigitos;
-//            }
-//
-//            if (this.objetoamigo.insertAmigoBD(nome, telefone)) {
-//                JOptionPane.showMessageDialog(null, "Amigo cadastrada com sucesso!");
-//                this.inputNome.setText("");
-//                this.inputTelefone.setText("");
-//            }
-            
-//        } catch (Mensagem erro) {
-//            JOptionPane.showMessageDialog(null, erro.getMessage());
-//        } catch (NumberFormatException erro2) {
-//            JOptionPane.showMessageDialog(null, "Informe um número válido.");
-        } catch (Mensagem error) {
-            throw new Error(error);
-        }
     }//GEN-LAST:event_btnEmprestarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -230,8 +155,20 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
         });
     }
     
-    public void carregarDados() {
+    public void carregarAmigos() {
+        ArrayList<Emprestimo> amigos = objetoEmprestimo.getMinhaLista();
         
+        for (Emprestimo e : amigos) {
+            dropdownAmigos.addItem(objetoEmprestimo.getUserById(e.getIdAmigo()));
+        }
+    }
+    
+    public void carregarFerramentas() {
+        ArrayList<Emprestimo> ferramentas = objetoEmprestimo.getMinhaLista();
+        
+        for (Emprestimo e : ferramentas) {
+            dropdownAmigos.addItem(objetoEmprestimo.getFerramentaById(e.getIdFerramenta()));
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

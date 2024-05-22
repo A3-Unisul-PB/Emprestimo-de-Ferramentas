@@ -16,8 +16,11 @@ public class EmprestimoDAO {
     public ArrayList<Emprestimo> getMinhaLista() {
         minhaLista.clear();
 
-        String query = "SELECT e.id, e.id_amigo, e.id_ferramenta, e.data_limite " +
-                       "FROM tb_emprestimos e";
+        String query = "SELECT e.id, e.id_amigo, e.id_ferramenta, e.data_limite, e.concluido " +
+               "FROM tb_emprestimos e " +
+               "JOIN tb_amigos a ON e.id_amigo = a.id " +
+               "JOIN tb_ferramentas f ON e.id_ferramenta = f.id";
+
 
         try {
             Statement stmt = db.getConexao().createStatement();
@@ -28,8 +31,9 @@ public class EmprestimoDAO {
                 int idAmigo = res.getInt("id_amigo");
                 int idFerramenta = res.getInt("id_ferramenta");
                 Date dataLimite = res.getDate("data_limite");
+                boolean concluido = res.getBoolean("concluido");
 
-                Emprestimo objeto = new Emprestimo(id, idAmigo, idFerramenta, dataLimite);
+                Emprestimo objeto = new Emprestimo(id, idAmigo, idFerramenta, dataLimite, concluido);
                 minhaLista.add(objeto);
             }
             stmt.close();
@@ -117,7 +121,7 @@ public class EmprestimoDAO {
     public Emprestimo carregaEmprestimo(int id) {
         Emprestimo objeto = new Emprestimo();
 
-        String query = "SELECT e.id, e.id_amigo, e.id_ferramenta, e.data_limite " +
+        String query = "SELECT e.id, e.id_amigo, e.id_ferramenta, e.data_limite, e.concluido " +
                        "FROM tb_emprestimos e WHERE e.id = " + id;
 
         try {
@@ -135,5 +139,49 @@ public class EmprestimoDAO {
             System.out.println("Erro:" + erro);
         }
         return objeto;
+    }
+    
+    public String getUserById(int id) {
+        String nomeAmigo = null;
+
+        String query = "SELECT a.nome " +
+                   "FROM tb_emprestimos e " +
+                   "JOIN tb_amigos a ON e.id_amigo = a.id " +
+                   "WHERE e.id = " + id;
+
+        try {
+            Statement stmt = db.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+        
+            if (res.next()) {
+                nomeAmigo = res.getString("nome");
+            }
+            stmt.close();
+        } catch (SQLException erro) {
+            System.out.println("Erro:" + erro);
+        }
+        return nomeAmigo;
+    }
+    
+    public String getFerramentaById(int id) {
+        String nomeFerramenta = null;
+
+        String query = "SELECT a.nome " +
+                   "FROM tb_emprestimos e " +
+                   "JOIN tb_ferramentas a ON e.id_ferramenta = a.id " +
+                   "WHERE e.id = " + id;
+
+        try {
+            Statement stmt = db.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+        
+            if (res.next()) {
+                nomeFerramenta = res.getString("nome");
+            }
+            stmt.close();
+        } catch (SQLException erro) {
+            System.out.println("Erro:" + erro);
+        }
+        return nomeFerramenta;
     }
 }
