@@ -10,7 +10,7 @@ import model.Emprestimo;
 public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
 
     private Emprestimo objetoEmprestimo;
-    
+
     public FrmCadastrarEmprestimo() {
         initComponents();
         this.objetoEmprestimo = new Emprestimo();
@@ -27,46 +27,43 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dropdownAmigos = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        dropdownAmigos = new javax.swing.JComboBox<>();
         dropdownFerramentas = new javax.swing.JComboBox<>();
+        inputDate = new javax.swing.JFormattedTextField();
         mensagemEmprestimo = new javax.swing.JLabel();
         btnEmprestar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        inputDate = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Empréstimos");
-        setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        dropdownAmigos.setToolTipText("Nome do Amigo");
+        jLabel1.setText("Amigos:");
+
+        jLabel2.setText("Ferramenta:");
+
+        jLabel3.setText("Data:");
+
+        dropdownAmigos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dropdownAmigos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dropdownAmigosActionPerformed(evt);
             }
         });
-        getContentPane().add(dropdownAmigos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 36, -1, -1));
 
-        jLabel1.setText("Amigos:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 14, -1, -1));
-
-        jLabel2.setText("Ferramentas:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 14, -1, -1));
-
-        dropdownFerramentas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Machado", "Broca", "Machadinha", "Parafusadeira", "Chave de Fenda" }));
-        dropdownFerramentas.setToolTipText("Ferramenta do empréstimo");
+        dropdownFerramentas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dropdownFerramentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dropdownFerramentasActionPerformed(evt);
             }
         });
-        getContentPane().add(dropdownFerramentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 36, -1, -1));
 
-        mensagemEmprestimo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(mensagemEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 96, 286, 29));
+        inputDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputDateActionPerformed(evt);
+            }
+        });
 
         btnEmprestar.setText("Emprestar");
         btnEmprestar.addActionListener(new java.awt.event.ActionListener() {
@@ -74,50 +71,92 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
                 btnEmprestarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEmprestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 163, 300, 33));
 
         btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 214, 300, 33));
 
-        inputDate.setText("26/05/2024");
-        inputDate.setToolTipText("Data de devolução");
-        getContentPane().add(inputDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 36, -1, -1));
-
-        jLabel3.setText("Data Limite:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 14, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addGap(157, 157, 157))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(127, 127, 127))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(dropdownAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(dropdownFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(inputDate, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(mensagemEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dropdownAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dropdownFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addComponent(mensagemEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnEmprestar)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestarActionPerformed
-            
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnEmprestarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
     private void dropdownAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownAmigosActionPerformed
+        // TODO add your handling code here:
         String amigo = dropdownAmigos.getSelectedItem().toString();
         String ferramenta = dropdownFerramentas.getSelectedItem().toString();
         String inputDate = this.inputDate.getText();
-            
+
         mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
     }//GEN-LAST:event_dropdownAmigosActionPerformed
 
     private void dropdownFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownFerramentasActionPerformed
+        // TODO add your handling code here:
         String amigo = dropdownAmigos.getSelectedItem().toString();
         String ferramenta = dropdownFerramentas.getSelectedItem().toString();
         String inputDate = this.inputDate.getText();
-            
+
         mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
     }//GEN-LAST:event_dropdownFerramentasActionPerformed
+
+    private void inputDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputDateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,7 +184,6 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FrmCadastrarEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -157,15 +195,15 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
     
     public void carregarAmigos() {
         ArrayList<Emprestimo> amigos = objetoEmprestimo.getMinhaLista();
-        
+
         for (Emprestimo e : amigos) {
             dropdownAmigos.addItem(objetoEmprestimo.getUserById(e.getIdAmigo()));
         }
     }
-    
+
     public void carregarFerramentas() {
         ArrayList<Emprestimo> ferramentas = objetoEmprestimo.getMinhaLista();
-        
+
         for (Emprestimo e : ferramentas) {
             dropdownAmigos.addItem(objetoEmprestimo.getFerramentaById(e.getIdFerramenta()));
         }
@@ -176,7 +214,7 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
     private javax.swing.JButton btnEmprestar;
     private javax.swing.JComboBox<String> dropdownAmigos;
     private javax.swing.JComboBox<String> dropdownFerramentas;
-    private javax.swing.JTextField inputDate;
+    private javax.swing.JFormattedTextField inputDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
