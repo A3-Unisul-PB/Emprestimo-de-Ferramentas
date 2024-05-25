@@ -49,6 +49,14 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
                 String nome = resultSet.getString("nome");
                 dropdownAmigos.addItem(nome);
             }
+        String queryFerramentas = "SELECT nome FROM tb_ferramentas";
+        PreparedStatement statementFerramentas = connect.getConexao().prepareStatement(queryFerramentas);
+        ResultSet resultSetFerramentas = statementFerramentas.executeQuery();
+
+        while (resultSetFerramentas.next()) {
+            String nomeFerramenta = resultSetFerramentas.getString("nome");
+            dropdownFerramentas.addItem(nomeFerramenta);
+        }
 
         } catch (SQLException ex) {
             System.out.println("Erro:" + ex);
