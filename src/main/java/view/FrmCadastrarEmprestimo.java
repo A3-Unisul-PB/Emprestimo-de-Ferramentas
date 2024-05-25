@@ -136,7 +136,7 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Amigos:");
 
@@ -302,11 +302,17 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
 
     private void dropdownAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownAmigosActionPerformed
         // TODO add your handling code here:
-        String amigo = dropdownAmigos.getSelectedItem().toString();
-        String ferramenta = dropdownFerramentas.getSelectedItem().toString();
+        Object selectedAmigo = dropdownAmigos.getSelectedItem();
+        Object selectedFerramenta = dropdownFerramentas.getSelectedItem();
         String inputDate = this.inputDataDevolucao.getText();
 
-        mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
+        if (selectedAmigo != null && selectedFerramenta != null && !inputDate.isEmpty()) {
+            String amigo = selectedAmigo.toString();
+            String ferramenta = selectedFerramenta.toString();
+            mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
+        } else {
+            mensagemEmprestimo.setText("Por favor, selecione um amigo, uma ferramenta e insira a data de devolução.");
+        }
     }//GEN-LAST:event_dropdownAmigosActionPerformed
 
     private void dropdownFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownFerramentasActionPerformed
@@ -317,14 +323,12 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
 
         mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
         try {
-            // Suponha que db seja sua conexão com o banco de dados
-            String query = "SELECT * FROM tb_ferramentas"; // Substitua por sua consulta SQL
+            String query = "SELECT * FROM tb_ferramentas"; 
             PreparedStatement pstmt = db.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
 
-            // Adicionar itens ao comboBox
             while (rs.next()) {
-                dropdownFerramentas.addItem(rs.getString("colunaFerramentas")); // Substitua "colunaFerramentas" pelo nome da sua coluna
+                dropdownFerramentas.addItem(rs.getString("colunaFerramentas")); 
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
