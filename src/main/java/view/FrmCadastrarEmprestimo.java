@@ -275,19 +275,21 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
 
         btnEmprestar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 String infoAmigos = (String) dropdownAmigos.getSelectedItem();
                 String infoFerramentas = (String) dropdownFerramentas.getSelectedItem();
+                String dateEmprestimo = inputDateEmprestimo.getText();
+                String dateDevolucao = inputDataDevolucao.getText();
 
                 DefaultTableModel model = (DefaultTableModel) tabelaFerramentas.getModel();
-                model.addRow(new Object[]{infoAmigos, infoFerramentas});
+                model.addRow(new Object[]{infoAmigos, infoFerramentas, dateEmprestimo, dateDevolucao});
 
                 try {
-
-                    String query = "INSERT INTO tb_emprestimo (colunaAmigos, colunaFerramentas) VALUES (?, ?)";
+                    String query = "INSERT INTO tb_emprestimo (colunaAmigos, colunaFerramentas, colunaDateEmprestimo, colunaDateDevolucao) VALUES (?, ?, ?, ?)";
                     PreparedStatement pstmt = db.prepareStatement(query);
                     pstmt.setString(1, infoAmigos);
                     pstmt.setString(2, infoFerramentas);
+                    pstmt.setString(3, dateEmprestimo);
+                    pstmt.setString(4, dateDevolucao);
                     pstmt.executeUpdate();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -314,6 +316,20 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
         String inputDate = this.inputDataDevolucao.getText();
 
         mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
+        try {
+            // Suponha que db seja sua conexão com o banco de dados
+            String query = "SELECT * FROM tb_ferramentas"; // Substitua por sua consulta SQL
+            PreparedStatement pstmt = db.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+
+            // Adicionar itens ao comboBox
+            while (rs.next()) {
+                dropdownFerramentas.addItem(rs.getString("colunaFerramentas")); // Substitua "colunaFerramentas" pelo nome da sua coluna
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
     }//GEN-LAST:event_dropdownFerramentasActionPerformed
 
     private void inputDataDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDataDevolucaoActionPerformed
