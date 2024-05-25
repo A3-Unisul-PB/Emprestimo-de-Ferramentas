@@ -173,6 +173,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private void menuGerenciarFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarFerramentasActionPerformed
         // TODO add your handling code here:
         FrmGerenciarFerramentas frmFerr = new FrmGerenciarFerramentas();
+        frmFerr.setVisible(true);
     }//GEN-LAST:event_menuGerenciarFerramentasActionPerformed
 
     /**
