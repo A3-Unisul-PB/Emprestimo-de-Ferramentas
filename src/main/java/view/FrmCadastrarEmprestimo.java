@@ -324,15 +324,12 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
 
         mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
         
-        DefaultTableModel modelo = (DefaultTableModel) this.tabelaFerramentas.getModel();
-        modelo.setNumRows(0);
-        ArrayList<Ferramenta> minhaLista = objetoferramenta.getMinhaLista();
-        for (Ferramenta a : minhaLista) {
-            modelo.addRow(new Object[]{
-                a.getId(),
-                a.getNome(),
-                a.getMarca(),
-                a.getPreco()});
+        if (amigo != null && ferramenta != null && !inputDate.isEmpty()) {
+            String amigos = amigo.toString();
+            String ferramentas = ferramenta.toString();
+            mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
+        } else {
+            mensagemEmprestimo.setText("Por favor, selecione um amigo, uma ferramenta e insira a data de devolução.");
         }
     
 
