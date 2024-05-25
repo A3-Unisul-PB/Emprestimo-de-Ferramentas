@@ -27,6 +27,7 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
     private DatabaseConnection connect;
     public ArrayList<String> FerSelect = new ArrayList<>();
     private DatabaseConnection db;
+    private Ferramenta objetoferramenta;
 
     public FrmCadastrarEmprestimo() {
         initComponents();
@@ -322,17 +323,18 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
         String inputDate = this.inputDataDevolucao.getText();
 
         mensagemEmprestimo.setText(amigo + " irá pegar " + ferramenta + " emprestado até " + inputDate + ", certo?");
-        try {
-            String query = "SELECT * FROM tb_ferramentas"; 
-            PreparedStatement pstmt = db.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                dropdownFerramentas.addItem(rs.getString("colunaFerramentas")); 
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        
+        DefaultTableModel modelo = (DefaultTableModel) this.tabelaFerramentas.getModel();
+        modelo.setNumRows(0);
+        ArrayList<Ferramenta> minhaLista = objetoferramenta.getMinhaLista();
+        for (Ferramenta a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getNome(),
+                a.getMarca(),
+                a.getPreco()});
         }
+    
 
     }//GEN-LAST:event_dropdownFerramentasActionPerformed
 
