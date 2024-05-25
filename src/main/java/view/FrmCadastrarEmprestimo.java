@@ -4,6 +4,8 @@ import com.mysql.cj.util.Util;
 import dao.DatabaseConnection;
 import dao.EmprestimoDAO;
 import dao.FerramentaDAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +18,6 @@ import model.Emprestimo;
 import model.Ferramenta;
 import model.UtilData;
 
-
 public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
 
     private FerramentaDAO dao = new FerramentaDAO();
@@ -25,6 +26,7 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
     private Emprestimo objEmprestimo;
     private DatabaseConnection connect;
     public ArrayList<String> FerSelect = new ArrayList<>();
+    private DatabaseConnection db;
 
     public FrmCadastrarEmprestimo() {
         initComponents();
@@ -53,16 +55,16 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
         }
     }
 
-  public void carregaTabelaFerramentas() {
-    DefaultTableModel modelo = (DefaultTableModel) tabelaFerramentas.getModel(); // Corrigido para tabelaFerramentas
-    modelo.setNumRows(0);
-    for (Ferramenta a : dao.getFerramentasDisponiveis()) {
-        modelo.addRow(new Object[]{
-            a.getId(),
-            a.getNome()
-        });
+    public void carregaTabelaFerramentas() {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaFerramentas.getModel(); // Corrigido para tabelaFerramentas
+        modelo.setNumRows(0);
+        for (Ferramenta a : dao.getFerramentasDisponiveis()) {
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getNome()
+            });
+        }
     }
-}
 
     public boolean alterarIdEmpFerramenta() {
         String sql = "UPDATE tb_ferramentas SET id_emprestimo = ? WHERE id_ferramenta = ?";
@@ -82,9 +84,10 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
 
         } catch (SQLException erro) {
             System.out.println("Erro: " + erro);
-            throw new RuntimeException(erro);
         }
+        return false;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,14 +144,12 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
 
         jLabel3.setText("Data de Empréstimo:");
 
-        dropdownAmigos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dropdownAmigos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dropdownAmigosActionPerformed(evt);
             }
         });
 
-        dropdownFerramentas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dropdownFerramentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dropdownFerramentasActionPerformed(evt);
@@ -185,9 +186,10 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Ferramenta", "Empréstimo", "Devolução"
             }
         ));
+        tabelaFerramentas.setRequestFocusEnabled(false);
         jScrollPane3.setViewportView(tabelaFerramentas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,10 +198,6 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(mensagemEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +226,11 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(127, 127, 127)
                                 .addComponent(btnCancelar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(mensagemEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
         );
@@ -257,9 +259,9 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(inputDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(63, 63, 63)
+                        .addGap(34, 34, 34)
                         .addComponent(mensagemEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(35, 35, 35)
                         .addComponent(btnEmprestar)
                         .addGap(29, 29, 29)
                         .addComponent(btnCancelar)))
@@ -270,7 +272,30 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestarActionPerformed
-        // TODO add your handling code here:
+
+        btnEmprestar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                String infoAmigos = (String) dropdownAmigos.getSelectedItem();
+                String infoFerramentas = (String) dropdownFerramentas.getSelectedItem();
+
+                DefaultTableModel model = (DefaultTableModel) tabelaFerramentas.getModel();
+                model.addRow(new Object[]{infoAmigos, infoFerramentas});
+
+                try {
+
+                    String query = "INSERT INTO tb_emprestimo (colunaAmigos, colunaFerramentas) VALUES (?, ?)";
+                    PreparedStatement pstmt = db.prepareStatement(query);
+                    pstmt.setString(1, infoAmigos);
+                    pstmt.setString(2, infoFerramentas);
+                    pstmt.executeUpdate();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+
     }//GEN-LAST:event_btnEmprestarActionPerformed
 
     private void dropdownAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownAmigosActionPerformed
