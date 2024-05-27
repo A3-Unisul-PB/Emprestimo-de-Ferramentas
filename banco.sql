@@ -15,7 +15,7 @@ INSERT INTO tb_amigos (id, nome, telefone) VALUES
 --Ferramentas--
 CREATE TABLE tb_ferramentas (
     id INT NOT NULL PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL,
+    ferramenta VARCHAR(50) NOT NULL,
     marca VARCHAR(50) NOT NULL,
     preco DECIMAL(7 , 2 ) NOT NULL
 );
