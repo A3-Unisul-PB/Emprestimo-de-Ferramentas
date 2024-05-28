@@ -31,17 +31,16 @@ CREATE TABLE tb_emprestimos (
     id_amigo INT NOT NULL,
     id_ferramenta INT NOT NULL,
     data_emprestimo TIMESTAMP DEFAULT NOW() NOT NULL,
-    data_limite DATE NOT NULL,
-    concluido BOOLEAN DEFAULT FALSE,
+    data_limite DATE,
     FOREIGN KEY (id_amigo) REFERENCES tb_amigos (id),
     FOREIGN KEY (id_ferramenta) REFERENCES tb_ferramentas (id)
 );
 
 
-INSERT INTO tb_emprestimos (id, id_amigo, id_ferramenta, data_limite) VALUES
-(1, 1, 1, '2024-06-01'),
-(2, 2, 3, '2024-06-10'),
-(3, 3, 2, '2024-06-15');
+INSERT INTO tb_emprestimos (id, id_amigo, id_ferramenta) VALUES
+(1, 1, 1),
+(2, 2, 3),
+(3, 3, 2);
 
 SELECT a.nome AS nome_amigo, f.nome AS nome_ferramenta
 FROM tb_emprestimos e
