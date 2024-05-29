@@ -28,6 +28,8 @@ public class RelatorioDAO {
             while(res.next()){
                 String amigoNome = res.getString("nome_amigo");
                 String ferramentaNome = res.getString("nome_ferramenta");
+                Relatorio objeto = new Relatorio(amigoNome, ferramentaNome);
+                minhaLista.add(objeto);
             }
             stmt.close();
         } catch (SQLException ex){
@@ -53,6 +55,8 @@ public class RelatorioDAO {
             while(res.next()){
                 String amigoNome = res.getString("nome_amigo");
                 String ferramentaNome = res.getString("nome_ferramenta");
+                
+                
             }
             stmt.close();
         } catch (SQLException ex){
