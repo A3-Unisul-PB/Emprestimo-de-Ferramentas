@@ -41,8 +41,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\jpns2\\OneDrive\\Documentos\\NetBeansProjects\\Emprestimo-de-Ferramentas\\src\\main\\java\\img\\logo emp.png")); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 6, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Cambria Math", 3, 24)); // NOI18N
