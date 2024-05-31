@@ -14,7 +14,6 @@ public class RelatorioDAO {
     }
     
     public ArrayList<Relatorio> getTotais(){
-        minhaLista.clear();
         
         String query = "SELECT a.nome AS nome_amigo, f.nome AS nome_ferramenta "+
                 "FROM tb_emprestimos e "+
@@ -26,7 +25,6 @@ public class RelatorioDAO {
     }
     
     public ArrayList<Relatorio> getAtrasados(){
-        minhaLista.clear();
         
         String query = "SELECT a.nome AS nome_amigo, \n" +
             "f.nome AS nome_ferramenta " +
@@ -34,6 +32,19 @@ public class RelatorioDAO {
             "JOIN tb_amigos a ON e.id_amigo = a.id " +
             "JOIN tb_ferramentas f ON e.id_ferramenta = f.id " +
             "WHERE e.data_limite < NOW();";
+        getRelatorio(query);
+            
+        return minhaLista;
+    }
+    
+    public ArrayList<Relatorio> getAtivos(){
+        
+        String query = "SELECT a.nome AS nome_amigo, \n" +
+            "f.nome AS nome_ferramenta " +
+            "FROM tb_emprestimos e " +
+            "JOIN tb_amigos a ON e.id_amigo = a.id " +
+            "JOIN tb_ferramentas f ON e.id_ferramenta = f.id " +
+            "WHERE e.data_limite >= NOW();";
         getRelatorio(query);
             
         return minhaLista;
