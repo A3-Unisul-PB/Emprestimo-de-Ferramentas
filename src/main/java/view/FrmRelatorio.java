@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 public class FrmRelatorio extends javax.swing.JFrame {
 
     private Relatorio objetorelatorio;
@@ -65,17 +68,17 @@ public class FrmRelatorio extends javax.swing.JFrame {
 
         JTableRelatorios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "ID", "Pessoa", "Ferramenta", "data"
+                "Pessoa", "Ferramenta"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -128,7 +131,7 @@ public class FrmRelatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JCBFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBFiltroActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_JCBFiltroActionPerformed
 
     /**
@@ -184,4 +187,16 @@ public class FrmRelatorio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+    
+    private void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JTableRelatorios.getModel();
+        modelo.setNumRows(0);
+        ArrayList<Relatorio> minhaLista = objetorelatorio.getMinhaLista();
+        for (Relatorio a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getAmigoNome(),
+                a.getFerramentaNome()});
+        }
+    }
+    
 }
