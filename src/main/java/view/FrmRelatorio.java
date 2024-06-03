@@ -12,7 +12,9 @@ public class FrmRelatorio extends javax.swing.JFrame {
     public FrmRelatorio() {
         initComponents();
         this.objetorelatorio = new Relatorio();
+        preencherMinhaLista();
         carregaTabela();
+        carregarMaisEmprestimo();
     }
 
     /**
@@ -134,7 +136,9 @@ public class FrmRelatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JCBFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBFiltroActionPerformed
-       carregaTabela();
+        preencherMinhaLista();
+        carregaTabela();
+        carregarMaisEmprestimo();
     }//GEN-LAST:event_JCBFiltroActionPerformed
 
     /**
@@ -187,9 +191,18 @@ public class FrmRelatorio extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 
-private void carregaTabela() {
+    private void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableRelatorios.getModel();
         modelo.setNumRows(0);
+        for (Relatorio a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getAmigoNome(),
+                a.getFerramentaNome()});
+        }
+    }
+    
+    private void preencherMinhaLista(){
+        minhaLista.clear();
         switch (JCBFiltro.getSelectedIndex()) {
         case 0:
             minhaLista = objetorelatorio.getTotais();//
@@ -200,12 +213,39 @@ private void carregaTabela() {
         case 2:
             minhaLista = objetorelatorio.getAtrasados();
             break;
-    }
-        for (Relatorio a : minhaLista) {
-            modelo.addRow(new Object[]{
-                a.getAmigoNome(),
-                a.getFerramentaNome()});
         }
     }
     
+    private void carregarMaisEmprestimo(){
+        int count = 0;
+        int maxCount = 0;
+        Relatorio amigo =null;
+        
+        /*
+        Pegar o amigo que mais faz emprestimo
+        */
+        for (Relatorio a: minhaLista){ 
+            count =0;
+            for (Relatorio b: minhaLista){
+                if (a.getAmigoNome().equals(b.getAmigoNome())){
+                    count++;
+                }
+            }
+            if (count > maxCount){
+                maxCount =count;
+                amigo = a;
+            }
+        }
+        
+        JTFMaisEmprestimos.setText("");
+        
+        if(amigo ==null){
+        JTFMaisEmprestimos.append("Ninguem encontrado com o filtro atual");
+        return;
+        }
+       
+        JTFMaisEmprestimos.append("mais emprestimos feitos: "+amigo.getAmigoNome()+"\n");
+        JTFMaisEmprestimos.append("Quantidade de emprestimo(s): "+maxCount +"\n");
+        JTFMaisEmprestimos.append("telefone: "+amigo.getTelefone());
+    }
 }
