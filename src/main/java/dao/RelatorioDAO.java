@@ -15,10 +15,10 @@ public class RelatorioDAO {
     
     public ArrayList<Relatorio> getTotais(){
         
-        String query = "SELECT a.nome AS nome_amigo, f.nome AS nome_ferramenta "+
-                "FROM tb_emprestimos e "+
-                "JOIN tb_amigos a ON e.id_amigo = a.id "+
-                "JOIN tb_ferramentas f ON e.id_ferramenta = f.id;";
+        String query = "SELECT a.nome AS nome_amigo, f.nome AS nome_ferramenta, a.telefone AS telefone_amigo "+
+            "FROM tb_emprestimos e "+
+            "JOIN tb_amigos a ON e.id_amigo = a.id "+
+            "JOIN tb_ferramentas f ON e.id_ferramenta = f.id;";
         getRelatorio(query);
         
         return minhaLista;
@@ -26,8 +26,7 @@ public class RelatorioDAO {
     
     public ArrayList<Relatorio> getAtrasados(){
         
-        String query = "SELECT a.nome AS nome_amigo, \n" +
-            "f.nome AS nome_ferramenta " +
+        String query = "SELECT a.nome AS nome_amigo, f.nome AS nome_ferramenta, a.telefone AS telefone_amigo " +
             "FROM tb_emprestimos e " +
             "JOIN tb_amigos a ON e.id_amigo = a.id " +
             "JOIN tb_ferramentas f ON e.id_ferramenta = f.id " +
@@ -39,8 +38,7 @@ public class RelatorioDAO {
     
     public ArrayList<Relatorio> getAtivos(){
         
-        String query = "SELECT a.nome AS nome_amigo, \n" +
-            "f.nome AS nome_ferramenta " +
+        String query = "SELECT a.nome AS nome_amigo, f.nome AS nome_ferramenta, a.telefone AS telefone_amigo " +
             "FROM tb_emprestimos e " +
             "JOIN tb_amigos a ON e.id_amigo = a.id " +
             "JOIN tb_ferramentas f ON e.id_ferramenta = f.id " +
@@ -60,7 +58,8 @@ public class RelatorioDAO {
             while(res.next()){
                 String amigoNome = res.getString("nome_amigo");
                 String ferramentaNome = res.getString("nome_ferramenta");
-                Relatorio objeto = new Relatorio(amigoNome, ferramentaNome);
+                String telefone = res.getString("telefone_amigo");
+                Relatorio objeto = new Relatorio(amigoNome, ferramentaNome,telefone);
                 minhaLista.add(objeto);
             }
             stmt.close();
