@@ -15,6 +15,7 @@ public class Relatorio {
     public Relatorio(String amigoNome, String FerramentaNome) {
         this.amigoNome = amigoNome;
         this.FerramentaNome = FerramentaNome;
+         dao = new RelatorioDAO();
     }
 
     public Relatorio() {

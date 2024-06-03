@@ -79,6 +79,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Acessar Relat&#xf3;rios"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAcessarRelatoriosActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

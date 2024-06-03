@@ -102,6 +102,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Relatórios");
 
         menuAcessarRelatorios.setText("Acessar Relatórios");
+        menuAcessarRelatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAcessarRelatoriosActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuAcessarRelatorios);
 
         jMenuBar1.add(jMenu2);
@@ -178,6 +183,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         FrmGerenciarFerramentas frmFerr = new FrmGerenciarFerramentas();
         frmFerr.setVisible(true);
     }//GEN-LAST:event_menuGerenciarFerramentasActionPerformed
+
+    private void menuAcessarRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAcessarRelatoriosActionPerformed
+        FrmRelatorio objeto = new FrmRelatorio();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_menuAcessarRelatoriosActionPerformed
 
     /**
      * @param args the command line arguments

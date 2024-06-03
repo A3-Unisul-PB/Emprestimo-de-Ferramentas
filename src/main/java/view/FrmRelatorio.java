@@ -2,14 +2,17 @@ package view;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import model.Relatorio;
 
 public class FrmRelatorio extends javax.swing.JFrame {
 
     private Relatorio objetorelatorio;
+    ArrayList<Relatorio> minhaLista = new ArrayList<>();
 
     public FrmRelatorio() {
         initComponents();
         this.objetorelatorio = new Relatorio();
+        carregaTabela();
     }
 
     /**
@@ -131,7 +134,7 @@ public class FrmRelatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JCBFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBFiltroActionPerformed
-       
+       carregaTabela();
     }//GEN-LAST:event_JCBFiltroActionPerformed
 
     /**
@@ -169,11 +172,7 @@ public class FrmRelatorio extends javax.swing.JFrame {
         });
     }
 
-    private static class Relatorio {
-
-        public Relatorio() {
-        }
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JCBFiltro;
@@ -187,11 +186,21 @@ public class FrmRelatorio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
-    
-    private void carregaTabela() {
+
+private void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableRelatorios.getModel();
         modelo.setNumRows(0);
-        ArrayList<Relatorio> minhaLista = objetorelatorio.getMinhaLista();
+        switch (JCBFiltro.getSelectedIndex()) {
+        case 0:
+            minhaLista = objetorelatorio.getTotais();//
+            break;
+        case 1:
+            minhaLista = objetorelatorio.getAtivos();
+            break;
+        case 2:
+            minhaLista = objetorelatorio.getAtrasados();
+            break;
+    }
         for (Relatorio a : minhaLista) {
             modelo.addRow(new Object[]{
                 a.getAmigoNome(),
