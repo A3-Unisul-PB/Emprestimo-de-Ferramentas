@@ -9,17 +9,19 @@ public class Relatorio {
     
    public String amigoNome;
    public String FerramentaNome;
+   public String telefone;
    
    private RelatorioDAO dao;
 
-    public Relatorio(String amigoNome, String FerramentaNome) {
+    public Relatorio(String amigoNome, String FerramentaNome, String telefone) {
         this.amigoNome = amigoNome;
         this.FerramentaNome = FerramentaNome;
+        this.telefone = telefone;
          dao = new RelatorioDAO();
     }
 
     public Relatorio() {
-        this("","");
+        this("","","");
     }
 
     public String getAmigoNome() {
@@ -36,6 +38,14 @@ public class Relatorio {
 
     public void setFerramentaNome(String FerramentaNome) {
         this.FerramentaNome = FerramentaNome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
     
     public ArrayList<Relatorio> getTotais(){
