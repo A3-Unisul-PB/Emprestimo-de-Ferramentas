@@ -68,3 +68,26 @@ SELECT a.nome AS nome_amigo, a.telefone, f.nome AS nome_ferramenta, f.preco
     JOIN tb_amigos a ON e.id_amigo = a.id
     JOIN tb_ferramentas f ON e.id_ferramenta = f.id
     WHERE e.data_finalizado IS NOT NULL;
+
+--Usuário com mais empréstimos--
+SELECT a.nome, a.telefone
+	FROM tb_amigos a
+	JOIN (
+      SELECT e.id_amigo, COUNT(e.id_amigo) AS total_emprestimos
+      FROM tb_emprestimos e
+      GROUP BY e.id_amigo
+	) AS emprestimos_por_amigo ON a.id = emprestimos_por_amigo.id_amigo
+	ORDER BY emprestimos_por_amigo.total_emprestimos DESC
+     LIMIT 1;
+
+--Preço total das ferramentas no relatório--
+SELECT SUM(f.preco) AS preco_total_emprestado
+FROM tb_emprestimos e
+JOIN tb_ferramentas f ON e.id_ferramenta = f.id;
+
+--Valida se o usuário possui empréstimos pendentes--
+SELECT EXISTS (
+    SELECT 1
+    FROM tb_emprestimos
+    WHERE id_amigo = 1 AND data_limite IS NOT NULL AND data_limite < CURRENT_DATE AND data_finalizado IS NULL
+) AS possui_emprestimo_pendente;
