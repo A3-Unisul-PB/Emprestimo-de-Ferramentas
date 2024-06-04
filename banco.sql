@@ -32,6 +32,7 @@ CREATE TABLE tb_emprestimos (
 	id_ferramenta INT NOT NULL,
 	data_emprestimo TIMESTAMP DEFAULT NOW() NOT NULL,
 	data_limite DATE,
+	data_finalizado DATE,
 	FOREIGN KEY (id_amigo) REFERENCES tb_amigos (id),
 	FOREIGN KEY (id_ferramenta) REFERENCES tb_ferramentas (id)
 );
