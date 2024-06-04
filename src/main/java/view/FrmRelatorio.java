@@ -220,6 +220,7 @@ public class FrmRelatorio extends javax.swing.JFrame {
         int count = 0;
         int maxCount = 0;
         Relatorio amigo =null;
+        double preco = 0;
         
         /*
         Pegar o amigo que mais faz emprestimo
@@ -243,9 +244,16 @@ public class FrmRelatorio extends javax.swing.JFrame {
         JTFMaisEmprestimos.append("Ninguem encontrado com o filtro atual");
         return;
         }
+        
+        for (Relatorio a : minhaLista){
+            if(a.getAmigoNome().equals(amigo.getAmigoNome())){
+                preco += a.getPreco();
+            }
+        }
        
         JTFMaisEmprestimos.append("mais emprestimos feitos: "+amigo.getAmigoNome()+"\n");
         JTFMaisEmprestimos.append("Quantidade de emprestimo(s): "+maxCount +"\n");
-        JTFMaisEmprestimos.append("telefone: "+amigo.getTelefone());
+        JTFMaisEmprestimos.append("telefone: "+amigo.getTelefone()+ "\n");
+        JTFMaisEmprestimos.append("Valor Total: R$"+preco);
     }
 }
