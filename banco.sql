@@ -1,4 +1,3 @@
-
 --Amigos--
 CREATE TABLE tb_amigos (
 	id INT NOT NULL PRIMARY KEY,
