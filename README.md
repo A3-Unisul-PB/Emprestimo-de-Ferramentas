@@ -1,4 +1,21 @@
-A3 - Empréstimo de Ferramentas
+
+A3 - Empréstimo de Ferramentas 
+---
+Integrantes:
+* Pedro Henrique Nieto - RA:
+	* Pedroo-Nietoo
+	* Pedro Nieto
+	* 
+* Heitor - RA: 1072410915
+	* HeitorWestphal
+	* heito
+* Vinicius Freitas da Silva - RA:17024113796
+	* Vinicius-Freitas-da-Silva
+	* Vinicius Freitas da Silva
+	* Vinicius
+	* PenRoseRubix
+* Ian
+
 ---
 ### **Requisitos funcionais**
 
