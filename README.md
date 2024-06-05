@@ -5,7 +5,6 @@ Integrantes:
 * Pedro Henrique Nieto - RA:
 	* Pedroo-Nietoo
 	* Pedro Nieto
-	* 
 * Heitor - RA: 1072410915
 	* HeitorWestphal
 	* heito
@@ -14,7 +13,8 @@ Integrantes:
 	* Vinicius Freitas da Silva
 	* Vinicius
 	* PenRoseRubix
-* Ian
+* Ian - RA: 1072410937
+	* Ian Santiago Silveira
 
 ---
 ### **Requisitos funcionais**
