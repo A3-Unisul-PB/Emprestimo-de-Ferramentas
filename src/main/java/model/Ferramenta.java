@@ -3,66 +3,82 @@ package model;
 import dao.FerramentaDAO;
 import java.util.ArrayList;
 
-/**
- * Classe Ferramenta que representa uma ferramenta.
- */
 public class Ferramenta {
 
-    private int id; // Identificador da ferramenta
-    private String nome; // Nome da ferramenta
-    private String marca; // Marca da ferramenta
-    private double preco; // Preço da ferramenta
-    FerramentaDAO dao; // DAO para operações de banco de dados
+    /**
+     * Atributos.
+     */
+    private int id;
+    private int idEmprestimo;
+    private String nome;
+    private String marca;
+    private double preco;
+    FerramentaDAO dao;
 
     /**
-     * Construtor padrão.
+     * Construtor de Objeto Vazio.
      */
     public Ferramenta() {
-        this(0, "", "", 0.0);
+        this(0, 0, "", "", 0.0);
     }
 
     /**
-     * Construtor com parâmetros.
-     * @param id O identificador da ferramenta.
-     * @param nome O nome da ferramenta.
-     * @param marca A marca da ferramenta.
-     * @param preco O preço da ferramenta.
+     * Construtor com parâmetro que inicializa os atributos com os valores
+     * fornecidos.
+     *
+     * @param id - Identificador do objeto.
+     * @param ferramenta - Ferramenta associada ao objeto.
+     * @param marca - Marca da ferramenta.
+     * @param preco - Preço da ferramenta.
      */
-    public Ferramenta(int id, String nome, String marca, double preco) {
+    public Ferramenta(int id, int idEmprestimo, String nome, String marca, double preco) {
         this.id = id;
         this.nome = nome;
+        this.idEmprestimo = idEmprestimo;
         this.marca = marca;
         this.preco = preco;
         dao = new FerramentaDAO();
     }
 
     /**
-     * Retorna o ID da ferramenta.
-     * @return O ID da ferramenta.
+     * Métodos GET e SET.
+     *
+     * @return - Retorna o valor do atributo.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Define o ID da ferramenta.
-     * @param id O novo ID da ferramenta.
+     * Define o identificador do objeto.
+     *
+     * @param id - Identificador do objeto.
      */
     public void setId(int id) {
         this.id = id;
     }
 
+    public int getIdEmprestimo() {
+        return idEmprestimo;
+    }
+
+    public void setIdEmprestimo(int idEmprestimo) {
+        this.idEmprestimo = idEmprestimo;
+    }
+
     /**
-     * Retorna o nome da ferramenta.
-     * @return O nome da ferramenta.
+     * Retorna a ferramenta associada ao objeto.
+     *
+     * @return - Retorna a ferramneta associada ao objeto.
      */
     public String getNome() {
         return nome;
     }
 
     /**
-     * Define o nome da ferramenta.
-     * @param nome O novo nome da ferramenta.
+     * Define a ferramenta associada ao objeto.
+     *
+     * @param Nome - Ferramenta a ser associada ao objeto.
      */
     public void setNome(String nome) {
         this.nome = nome;
@@ -70,23 +86,26 @@ public class Ferramenta {
 
     /**
      * Retorna a marca da ferramenta.
-     * @return A marca da ferramenta.
+     *
+     * @return - Retorna a marca da ferramenta.
      */
     public String getMarca() {
         return marca;
     }
 
     /**
-     * Define a marca da ferramenta.
-     * @param marca A nova marca da ferramenta.
+     * Difine a marca da ferramenta.
+     *
+     * @param Marca - Marca da ferramenta.
      */
-    public void setMarca(String marca) {
+    public void setMarca(String Marca) {
         this.marca = marca;
     }
 
     /**
      * Retorna o preço da ferramenta.
-     * @return O preço da ferramenta.
+     *
+     * @return - Retorna o preço da ferramenta.
      */
     public double getPreco() {
         return preco;
@@ -94,47 +113,54 @@ public class Ferramenta {
 
     /**
      * Define o preço da ferramenta.
-     * @param preco O novo preço da ferramenta.
+     *
+     * @param preco - Preço da ferramenta.
      */
     public void setPreco(double preco) {
         this.preco = preco;
     }
 
     /**
-     * Retorna uma representação em string do objeto Ferramenta.
-     * @return Uma representação em string do objeto Ferramenta.
+     * Representação em string do objeto.
+     *
+     * @return - Retorna uma representação em string do objeto.
      */
     @Override
     public String toString() {
-        return super.toString() + "ferramenta=" + nome + ", marca=" + marca + "preco=" + preco;
+        return super.toString() + "nome=" + nome + ", marca=" + marca + "preco=" + preco;
     }
 
     /**
-     * Retorna a lista de ferramentas.
-     * @return A lista de ferramentas.
+     * Lista de ferramentas.
+     *
+     * @return - Retorna a lista de ferramentas.
      */
     public ArrayList<Ferramenta> getMinhaLista() {
         return dao.getMinhaLista();
     }
 
     /**
-     * Insere uma nova ferramenta no banco de dados.
-     * @param ferramenta O nome da nova ferramenta.
-     * @param marca A marca da nova ferramenta.
-     * @param preco O preço da nova ferramenta.
-     * @return Verdadeiro se a inserção foi bem sucedida, falso caso contrário.
+     * Insere uma ferramenta no banco de dados.
+     *
+     * @param nome - Ferramenta a ser inserida.
+     * @param marca - Marca da ferramenta a ser inserida.
+     * @param preco - Preço da ferramenta a ser inserida.
+     * @return - Verdadeiro se a inserção for bem-sucedida, falso caso
+     * contrário.
      */
-    public boolean insertFerramentaBD(String ferramenta, String marca, double preco) {
+    public boolean insertFerramentaBD(String nome, String marca, double preco) {
         int id = this.maiorID() + 1;
-        Ferramenta objeto = new Ferramenta(id, ferramenta, marca, preco);
+        Ferramenta objeto = new Ferramenta(id, idEmprestimo, nome, marca, preco);
         dao.insertFerramentaBD(objeto);
         return true;
+
     }
 
     /**
-     * Deleta uma ferramenta do banco de dados.
-     * @param id O ID da ferramenta a ser deletada.
-     * @return Verdadeiro se a deleção foi bem sucedida, falso caso contrário.
+     * Remove uma ferramenta do banco de dados.
+     *
+     * @param id - Identificador da ferramenta a ser removida.
+     * @return - Vardeiro se a remoção for bem-sucedida, falso caso contrário.
      */
     public boolean deleteFerramentaBD(int id) {
         dao.deleteFerramentaBD(id);
@@ -143,30 +169,34 @@ public class Ferramenta {
 
     /**
      * Atualiza uma ferramenta no banco de dados.
-     * @param id O ID da ferramenta a ser atualizada.
-     * @param ferramenta O novo nome da ferramenta.
-     * @param marca A nova marca da ferramenta.
-     * @param preco O novo preço da ferramenta.
-     * @return Verdadeiro se a atualização foi bem sucedida, falso caso contrário.
+     *
+     * @param id - Identificador da ferramenta a ser atualizada.
+     * @param nome - Nova ferramenta a ser associada ao objeto.
+     * @param marca - Nova marca da ferramenta.
+     * @param preco - Novo preço da ferramenta.
+     * @return - Verdadeiro se a atualização for bem-sucedida, falso caso
+     * contrário.
      */
-    public boolean updateFerramentaBD(int id, String ferramenta, String marca, double preco) {
-        Ferramenta objeto = new Ferramenta(id, ferramenta, marca, preco);
+    public boolean updateFerramentaBD(int id, String nome, String marca, double preco) {
+        Ferramenta objeto = new Ferramenta(id, idEmprestimo, nome, marca, preco);
         dao.updateFerramentaBD(objeto);
         return true;
     }
 
     /**
      * Carrega uma ferramenta do banco de dados.
-     * @param id O ID da ferramenta a ser carregada.
-     * @return O objeto Ferramenta carregado do banco de dados.
+     *
+     * @param id - Identificador da ferramenta a ser carregada.
+     * @return - Retorna a ferramenta carregada do banco de dados.
      */
     public Ferramenta carregaFerramenta(int id) {
         return dao.carregaFerramenta(id);
     }
 
     /**
-     * Retorna o maior ID entre as ferramentas.
-     * @return O maior ID entre as ferramentas.
+     * Retorna o maior identificador de ferramenta no banco de dados.
+     *
+     * @return - Retorna o maior identificador de ferramenta no banco de dados.
      */
     public int maiorID() {
         return dao.maiorID();

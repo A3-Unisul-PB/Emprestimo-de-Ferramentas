@@ -28,7 +28,7 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         JTFMarca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        JTFPreco = new javax.swing.JTextField();
+        JTFPreço = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         JTFNome = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -52,7 +52,7 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
 
         jLabel3.setText("Preço:");
 
-        jLabel5.setText("Nome:");
+        jLabel5.setText("Ferramenta:");
 
         JTFNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,11 +65,10 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Marca", "Preço"
+                "ID", "Ferrramenta", "Marca", "Preço"
             }
         ));
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,6 +108,8 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JBEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JTFNome)
+                    .addComponent(JBApagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JBCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addComponent(JTFMarca)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,9 +117,7 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(JTFPreco)
-                    .addComponent(JBApagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JBCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                    .addComponent(JTFPreço))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -140,15 +139,15 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(JTFMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JTFPreço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
                         .addComponent(JBApagar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JBEditar)
@@ -187,7 +186,7 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
                 if (this.objetoferramenta.deleteFerramentaBD(id)) {
                     this.JTFNome.setText("");
                     this.JTFMarca.setText("");
-                    this.JTFPreco.setText("");
+                    this.JTFPreço.setText("");
                     JOptionPane.showMessageDialog(rootPane, "Ferramenta apagada com sucesso!");
                 }
             }
@@ -203,11 +202,11 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
             String nome = this.tabela.getValueAt(this.tabela.getSelectedRow(), 1).toString();
             String marca = this.tabela.getValueAt(this.tabela.getSelectedRow(), 2).toString();
             // Use Double.parseDouble() to convert the String to double
-            double preco = Double.parseDouble(this.tabela.getValueAt(this.tabela.getSelectedRow(), 3).toString());
+            String preco =(this.tabela.getValueAt(this.tabela.getSelectedRow(), 3).toString());
 
             this.JTFNome.setText(nome);
             this.JTFMarca.setText(marca);
-            this.JTFPreco.setText(String.valueOf(preco));
+            this.JTFPreço.setText(preco);
         }
     }//GEN-LAST:event_tabelaMouseClicked
 
@@ -216,7 +215,7 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
             int id = 0;
             String nome = "";
             String Marca = "";
-            double Preço = 0;
+            double Preco = 0;
 
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
@@ -229,10 +228,10 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
             } else {
                 Marca = this.JTFMarca.getText();
             }
-            if (this.JTFPreco.getText().length() <= 0) {
+            if (this.JTFPreço.getText().length() <= 0) {
                 throw new Mensagem("Preço deve ser número e maior que zero.");
             } else {
-                Marca = this.JTFPreco.getText();
+                Preco = Double.parseDouble(this.JTFPreço.getText());
             }
 
             if (this.tabela.getSelectedRow() == -1) {
@@ -241,10 +240,10 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
                 id = Integer.parseInt(this.tabela.getValueAt(this.tabela.getSelectedRow(), 0).toString());
             }
 
-            if (this.objetoferramenta.updateFerramentaBD(id, nome, Marca, Preço)) {
+            if (this.objetoferramenta.updateFerramentaBD(id, nome, Marca, Preco)) {
                 this.JTFNome.setText("");
                 this.JTFMarca.setText("");
-                this.JTFPreco.setText("");
+                this.JTFPreço.setText("");
                 JOptionPane.showMessageDialog(null, "Ferramenta editada com sucesso!");
 
             }
@@ -297,7 +296,7 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
     private javax.swing.JButton JBEditar;
     private javax.swing.JTextField JTFMarca;
     private javax.swing.JTextField JTFNome;
-    private javax.swing.JTextField JTFPreco;
+    private javax.swing.JTextField JTFPreço;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

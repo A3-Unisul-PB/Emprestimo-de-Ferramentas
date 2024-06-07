@@ -19,11 +19,15 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        JTFFerramenta = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        JTFNome = new javax.swing.JTextField();
         JTFMarca = new javax.swing.JTextField();
         JTFCusto = new javax.swing.JTextField();
         b_cadastrar = new javax.swing.JButton();
         b_cancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -38,11 +42,18 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel2.setText("Ferramenta");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ferramentas");
         setResizable(false);
 
-        JTFFerramenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JTFNome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JTFNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFNomeActionPerformed(evt);
+            }
+        });
 
         JTFMarca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTFMarca.addActionListener(new java.awt.event.ActionListener() {
@@ -71,18 +82,30 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Ferramenta");
+
+        jLabel3.setText("MARCA");
+
+        jLabel4.setText("CUSTO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(JTFFerramenta, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(95, 95, 95)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(72, 72, 72)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
                 .addComponent(JTFMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(78, 78, 78)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JTFCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(110, 110, 110)
@@ -95,11 +118,17 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(JTFFerramenta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(16, 16, 16)
-                .addComponent(JTFMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTFMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(20, 20, 20)
-                .addComponent(JTFCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTFCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(44, 44, 44)
                 .addComponent(b_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -116,14 +145,14 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
 
     private void b_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cadastrarActionPerformed
         try {
-            String ferramenta = "";
+            String nome = "";
             String marca = "";
             double preco = 0.0;
 
-            if (this.JTFFerramenta.getText().length() < 2) {
+            if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Ferramenta deve conter ao menos 2 caracteres.");
             } else {
-                ferramenta = this.JTFFerramenta.getText();
+                nome = this.JTFNome.getText();
             }
 
             if (this.JTFMarca.getText().length() <= 0) {
@@ -138,10 +167,10 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
                 preco = Double.parseDouble(this.JTFCusto.getText());
             }
 
-            if (this.objetoferramenta.insertFerramentaBD(ferramenta, marca, preco)) {
+            if (this.objetoferramenta.insertFerramentaBD(nome, marca, preco)) {
                 JOptionPane.showMessageDialog(null, "Ferramenta Cadastrada com Sucesso!");
                 // limpa campos da interface
-                this.JTFFerramenta.setText("");
+                this.JTFNome.setText("");
                 this.JTFMarca.setText("");
                 this.JTFCusto.setText("");
             }
@@ -153,6 +182,10 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
     private void JTFMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFMarcaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFMarcaActionPerformed
+
+    private void JTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFNomeActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -188,11 +221,16 @@ public class FrmCadastroFerramentas extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTFCusto;
-    private javax.swing.JTextField JTFFerramenta;
     private javax.swing.JTextField JTFMarca;
+    private javax.swing.JTextField JTFNome;
     private javax.swing.JButton b_cadastrar;
     private javax.swing.JButton b_cancelar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
+
