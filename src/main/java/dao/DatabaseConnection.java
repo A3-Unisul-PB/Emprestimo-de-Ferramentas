@@ -19,7 +19,7 @@ public class DatabaseConnection {
                 String database = "db_a3";
                 String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
                 String user = "root";
-                String password = "Unisul@1520";
+                String password = "Unisul@1520";//senha do banco de dados
 
                 connection = DriverManager.getConnection(url, user, password);
 
