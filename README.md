@@ -15,7 +15,8 @@ Integrantes:
 	* PenRoseRubix
 * Ian - RA: 1072410937
 	* Ian Santiago Silveira
-
+* João Pedro Nobile dos Santos - RA:1072411014
+	* jpzyn
 ---
 ### **Requisitos funcionais**
 
