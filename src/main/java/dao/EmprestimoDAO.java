@@ -20,6 +20,9 @@ public class EmprestimoDAO {
      * Lista de empréstimos ativos
      */
     public ArrayList<Emprestimo> ListaEmprestimosAtivos = new ArrayList<>();
+    
+    public ArrayList<Emprestimo> ListaEmprestimosPendentes = new ArrayList<>();
+
 
     /**
      * Conexão com o banco de dados
@@ -364,5 +367,51 @@ public class EmprestimoDAO {
             System.out.println("Erro: " + erro);
             throw new RuntimeException(erro);
         }
+    }
+    
+    public ArrayList<Emprestimo> getEmprestimosPendentes() {
+
+        /**
+         * Limpa a lista atual antes de preenchê-la
+         */
+        ListaEmprestimosPendentes.clear();
+
+        try {
+            /**
+             * Cria um statement para executar a consulta
+             */
+            Statement stmt = connect.getConexao().createStatement();
+            /**
+             * Executa a consulta SQL para obter os empréstimos que ainda não
+             * foram entregues
+             */
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos WHERE entregue is false AND data_devolucao <  NOW()");
+            /**
+             * Itera sobre o resultado da consulta
+             */
+            while (res.next()) {
+
+                /**
+                 * Obtém os dados de cada empréstimo do resultado
+                 */
+                int id = res.getInt("id_emprestimo");
+                Date data_emp = res.getDate("data_emprestimo");
+                Date data_dev = res.getDate("data_devolucao");
+                boolean entregue = res.getBoolean("entregue");
+                int idEmp = res.getInt("id_amigo");
+
+                /**
+                 * Cria um objeto Emprestimo com os dados obtidos e o adiciona à
+                 * lista de empréstimos ativos
+                 */
+                Emprestimo objeto = new Emprestimo(data_emp, data_dev, entregue, id, idEmp);
+                ListaEmprestimosPendentes.add(objeto);
+            }
+            stmt.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Erro:" + ex);
+        }
+        return ListaEmprestimosPendentes;
     }
 }
