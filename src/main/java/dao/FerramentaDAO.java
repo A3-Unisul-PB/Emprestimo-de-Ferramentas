@@ -25,13 +25,12 @@ public class FerramentaDAO {
             Statement stmt = db.getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas");
             while (res.next()) {
-                int id = res.getInt("id_ferramenta");
-                int idEmprestimo = res.getInt("id_emprestimo");
+                int id = res.getInt("id");
                 String nome = res.getString("nome");
                 String marca = res.getString("marca");
                 double preco = res.getDouble("preco");
 
-                Ferramenta objeto = new Ferramenta(id, idEmprestimo, nome, marca, preco);
+                Ferramenta objeto = new Ferramenta(id, nome, marca, preco);
                 minhaLista.add(objeto);
             }
             stmt.close();
@@ -50,7 +49,7 @@ public class FerramentaDAO {
         int maiorID = 0;
         try {
             Statement stmt = db.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(id_ferramenta) id FROM tb_ferramentas");
+            ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_ferramentas");
             res.next();
             maiorID = res.getInt("id");
             stmt.close();
@@ -61,7 +60,7 @@ public class FerramentaDAO {
     }
 
     public boolean insertFerramentaBD(Ferramenta objeto) {
-        String sql = "INSERT INTO tb_ferramentas(id_ferramenta,nome,marca,preco) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO tb_ferramentas(id,nome,marca,preco) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = db.getConexao().prepareStatement(sql);
 
@@ -83,7 +82,7 @@ public class FerramentaDAO {
     public boolean deleteFerramentaBD(int id) {
         try {
             Statement stmt = db.getConexao().createStatement();
-            stmt.executeUpdate("DELETE FROM tb_ferramentas WHERE id_ferramenta = " + id);
+            stmt.executeUpdate("DELETE FROM tb_ferramentas WHERE id = " + id);
             stmt.close();
 
         } catch (SQLException erro) {
@@ -93,7 +92,7 @@ public class FerramentaDAO {
     }
 
     public boolean updateFerramentaBD(Ferramenta objeto) {
-        String sql = "UPDATE tb_ferramentas set nome = ?, marca = ?, preco = ? WHERE id_ferramenta = ?";
+        String sql = "UPDATE tb_ferramentas set nome = ?, marca = ?, preco = ? WHERE id = ?";
 
         try {
             PreparedStatement stmt = db.getConexao().prepareStatement(sql);
@@ -119,7 +118,7 @@ public class FerramentaDAO {
         objeto.setId(id);
         try {
             Statement stmt = db.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas WHERE id_ferramenta = " + id);
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas WHERE id = " + id);
             res.next();
 
             objeto.setNome(res.getString("nome"));
@@ -138,16 +137,14 @@ public class FerramentaDAO {
 
         try {
             Statement stmt = db.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas WHERE id_emprestimo is null");
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas");
             while (res.next()) {
-
-                int id = res.getInt("id_ferramenta");
+                int id = res.getInt("id");
                 String nome = res.getString("nome");
                 String marca = res.getString("marca");
                 double preco = Double.parseDouble(res.getString("preco"));
-                int idEmprestimo = res.getInt("id_emprestimo");
 
-                Ferramenta objeto = new Ferramenta(id, idEmprestimo, nome, marca, preco);
+                Ferramenta objeto = new Ferramenta(id, nome, marca, preco);
 
                 ListaFerramentasDisponiveis.add(objeto);
             }

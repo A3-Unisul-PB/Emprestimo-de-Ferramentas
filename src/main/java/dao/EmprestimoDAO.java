@@ -55,17 +55,18 @@ public class EmprestimoDAO {
                 /**
                  * Obtém os dados de cada empréstimo do resultado
                  */
-                int id = res.getInt("id_emprestimo");
-                int idAmg = res.getInt("id_amigo");
+                int id = res.getInt("id");
+                int idAmigo = res.getInt("id_amigo");
+                int idFerramenta = res.getInt("id_ferramenta");
                 Date dataEmprestimo = res.getDate("data_emprestimo");
-                Date dataDevolucao = res.getDate("data_devolucao");
-                boolean entregue = res.getBoolean("entregue");
+                Date dataLimite = res.getDate("data_limite");
+                Date dataFinalizado = res.getDate("data_finalizado");
 
                 /**
                  * Cria um objeto Emprestimo com os dados obtidos e o adiciona à
                  * lista
                  */
-                Emprestimo objeto = new Emprestimo(dataEmprestimo, dataDevolucao, entregue, id, idAmg);
+                Emprestimo objeto = new Emprestimo(id, idAmigo, idFerramenta, dataEmprestimo, dataLimite, dataFinalizado);
                 ListaEmprestimos.add(objeto);
             }
             stmt.close();
@@ -91,7 +92,7 @@ public class EmprestimoDAO {
             /**
              * Executa a consulta SQL para obter o maior ID de empréstimo
              */
-            ResultSet res = stmt.executeQuery("SELECT MAX(id_emprestimo) id FROM tb_emprestimos");
+            ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_emprestimos");
             res.next();
             maiorId = res.getInt("id");
             stmt.close();
@@ -101,17 +102,11 @@ public class EmprestimoDAO {
         return maiorId;
     }
 
-    /**
-     * Método para inserir um novo empréstimo no banco de dados
-     *
-     * @param objeto
-     * @return
-     */
     public boolean inserirEmprestimoBD(Emprestimo objeto) {
         /**
          * SQL para inserção de um novo empréstimo
          */
-        String sql = "INSERT INTO tb_emprestimos(id_emprestimo,id_amigo,data_emprestimo, data_devolucao, entregue) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO tb_emprestimos(id, id_amigo, id_ferramenta, data_limite) VALUES(?,?,?,?,?)";
         try {
             /**
              * Prepara o statement com a consulta SQL
@@ -122,10 +117,9 @@ public class EmprestimoDAO {
              * Define os parâmetros da consulta com os dados do empréstimo
              */
             stmt.setInt(1, objeto.getId());
-            stmt.setInt(2, objeto.getIdAmg());
-            stmt.setDate(3, objeto.getDataEmprestimo());
-            stmt.setDate(4, objeto.getDataDevolucao());
-            stmt.setBoolean(5, objeto.isEntregue());
+            stmt.setInt(2, objeto.getIdAmigo());
+            stmt.setInt(3, objeto.getIdFerramenta());
+            stmt.setDate(4, objeto.getDataLimite());
 
             /**
              * Executa a consulta SQL
@@ -140,13 +134,7 @@ public class EmprestimoDAO {
         }
     }
 
-    /**
-     * Método para apagar um empréstimo do banco de dados
-     *
-     * @param id
-     * @return
-     */
-    public boolean apagarEmprestimoBD(int id) {
+    public boolean concluirEmprestimo(int id) {
         try {
             /**
              * Cria um statement para executar a consulta
@@ -157,7 +145,9 @@ public class EmprestimoDAO {
              * Executa a consulta SQL para apagar o empréstimo com o ID
              * especificado
              */
-            stmt.executeUpdate("DELETE FROM tb_emprestimos WHERE id_emprestimo = " + id);
+            stmt.executeUpdate("UPDATE tb_emprestimos\n"
+                    + "SET data_finalizado = CURRENT_DATE\n"
+                    + "WHERE id = " + id);
 
             stmt.close();
         } catch (SQLException erro) {
@@ -166,57 +156,11 @@ public class EmprestimoDAO {
         return true;
     }
 
-    /**
-     * Método para alterar os dados de um empréstimo no banco de dados
-     *
-     * @param objeto
-     * @return
-     */
-    public boolean alterarEmprestimoBD(Emprestimo objeto) {
-        /**
-         * SQL para atualizar os dados de um empréstimo
-         */
-        String sql = "UPDATE tb_emprestimos set data_devolucao = ?, entregue = ? WHERE id_emprestimo = ?";
-        try {
-            /**
-             * Prepara o statement com a consulta SQL
-             */
-            PreparedStatement stmt = connect.getConexao().prepareStatement(sql);
-
-            /**
-             * Define os parâmetros da consulta com os dados atualizados do
-             * empréstimo
-             */
-            stmt.setDate(1, objeto.getDataDevolucao());
-            stmt.setBoolean(2, objeto.isEntregue());
-            stmt.setInt(3, objeto.getId());
-
-            /**
-             * Executa a consulta SQL
-             */
-            stmt.execute();
-            stmt.close();
-
-            return true;
-
-        } catch (SQLException erro) {
-            System.out.println("Erro: " + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-
-    /**
-     * Método para carregar os dados de um empréstimo do banco de dados
-     *
-     * @param id
-     * @return
-     */
-    public Emprestimo carregarEmprestimoBD(int id) {
+    public Emprestimo carregarEmprestimoBD() {
         /**
          * Cria um objeto Emprestimo para armazenar os dados carregados
          */
         Emprestimo objeto = new Emprestimo();
-        objeto.setId(id);
         try {
             /**
              * Cria um statement para executar a consulta
@@ -227,30 +171,27 @@ public class EmprestimoDAO {
              * Executa a consulta SQL para obter os dados do empréstimo com o ID
              * especificado
              */
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos WHERE id_emprestimo = " + id);
+            ResultSet res = stmt.executeQuery("SELECT e.id AS id, a.nome AS nome_amigo, a.telefone, f.nome AS nome_ferramenta, f.preco\n"
+                    + "FROM tb_emprestimos e\n"
+                    + "JOIN tb_amigos a ON e.id_amigo = a.id\n"
+                    + "JOIN tb_ferramentas f ON e.id_ferramenta = f.id ORDER BY id ASC;");
             res.next();
 
-            /**
-             * Preenche o objeto Emprestimo com os dados obtidos do banco de
-             * dados
-             */
-            objeto.setIdAmg(res.getInt("id_amigo"));
+            objeto.setId(res.getInt("id"));
+            objeto.setIdAmigo(res.getInt("id_amigo"));
+            objeto.setIdFerramenta(res.getInt("id_ferramenta"));
             objeto.setDataEmprestimo(res.getDate("data_emprestimo"));
-            objeto.setDataDevolucao(res.getDate("data_devolucao"));
-            objeto.setEntregue(res.getBoolean("entregue"));
+            objeto.setDataLimite(res.getDate("data_limite"));
+            objeto.setDataFinalizado(res.getDate("data_finalizado"));
 
             stmt.close();
         } catch (SQLException erro) {
             System.out.println("Erro:" + erro);
+
         }
         return objeto;
     }
 
-    /**
-     * Método para obter a lista de empréstimos ativos
-     *
-     * @return
-     */
     public ArrayList<Emprestimo> getEmprestimosAtivos() {
 
         /**
@@ -265,9 +206,12 @@ public class EmprestimoDAO {
             Statement stmt = connect.getConexao().createStatement();
             /**
              * Executa a consulta SQL para obter os empréstimos que ainda não
-             * foram entregues
+             * foram data_finalizados
              */
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos WHERE entregue is false");
+            ResultSet res = stmt.executeQuery("SELECT a.nome AS nome_amigo, a.telefone, f.nome AS nome_ferramenta, f.preco\n"
+                    + "	FROM tb_emprestimos e\n"
+                    + "	JOIN tb_amigos a ON e.id_amigo = a.id\n"
+                    + "	JOIN tb_ferramentas f ON e.id_ferramenta = f.id;");
             /**
              * Itera sobre o resultado da consulta
              */
@@ -276,17 +220,17 @@ public class EmprestimoDAO {
                 /**
                  * Obtém os dados de cada empréstimo do resultado
                  */
-                int id = res.getInt("id_emprestimo");
+                int id = res.getInt("id");
                 Date data_emp = res.getDate("data_emprestimo");
-                Date data_dev = res.getDate("data_devolucao");
-                boolean entregue = res.getBoolean("entregue");
+                Date data_dev = res.getDate("data_limite");
+                boolean data_finalizado = res.getBoolean("data_finalizado");
                 int idEmp = res.getInt("id_amigo");
 
                 /**
                  * Cria um objeto Emprestimo com os dados obtidos e o adiciona à
                  * lista de empréstimos ativos
                  */
-                Emprestimo objeto = new Emprestimo(data_emp, data_dev, entregue, id, idEmp);
+                Emprestimo objeto = new Emprestimo(data_emp, data_dev, data_finalizado, id, idEmp);
                 ListaEmprestimosAtivos.add(objeto);
             }
             stmt.close();
@@ -313,7 +257,7 @@ public class EmprestimoDAO {
             /**
              * Executa a consulta SQL para obter os empréstimos
              */
-            ResultSet res = stmt.executeQuery("select id_emprestimo, entregue from tb_emprestimos;");
+            ResultSet res = stmt.executeQuery("select id, data_finalizado from tb_emprestimos;");
             /**
              * Itera sobre o resultado da consulta
              */
@@ -322,14 +266,14 @@ public class EmprestimoDAO {
                 /**
                  * Obtém os dados de cada empréstimo do resultado
                  */
-                int idEmp = res.getInt("id_emprestimo");
-                boolean entregue = res.getBoolean("entregue");
+                int idEmp = res.getInt("id");
+                boolean data_finalizado = res.getBoolean("data_finalizado");
 
                 /**
                  * Verifica se o empréstimo com o ID especificado ainda não foi
-                 * entregue
+                 * data_finalizado
                  */
-                if (idEmp == id && entregue == false) {
+                if (idEmp == id && data_finalizado == false) {
                     return true;
                     /**
                      * Retorna que o empréstimo ainda está ativo
@@ -350,7 +294,7 @@ public class EmprestimoDAO {
      * @return
      */
     public boolean alterarIdEmpFerramentaPendente(int id) {
-        String sql = "UPDATE tb_ferramentas SET id_emprestimo = null WHERE id_emprestimo = ?";
+        String sql = "UPDATE tb_ferramentas SET id = null WHERE id = ?";
         try {
             PreparedStatement stmt = connect.getConexao().prepareStatement(sql);
 
