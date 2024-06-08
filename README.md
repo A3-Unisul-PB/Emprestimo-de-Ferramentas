@@ -2,7 +2,7 @@
 A3 - Empréstimo de Ferramentas 
 ---
 Integrantes:
-* Pedro Henrique Nieto - RA:
+* Pedro Henrique Nieto da Silva - RA: 1072411483
 	* Pedroo-Nietoo
 	* Pedro Nieto
 * Heitor - RA: 1072410915
