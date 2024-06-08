@@ -1,5 +1,6 @@
 package view;
 
+import dao.FerramentaDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,12 +12,14 @@ import model.Ferramenta;
 public class FrmGerenciarFerramentas extends javax.swing.JFrame {
 
     private Ferramenta objetoferramenta;
+     private FerramentaDAO dao;
 
-    public FrmGerenciarFerramentas() {
+     public FrmGerenciarFerramentas() {
         initComponents();
         this.objetoferramenta = new Ferramenta();
+        this.dao = new FerramentaDAO();
         this.carregaTabela();
-        this.getValorTotalDasFerramentas();
+        precoTotal.setText("R$" + dao.valorTotal());
     }
 
     /**
@@ -334,23 +337,5 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
                 a.getMarca(),
                 a.getPreco()});
         }
-    }
-    
-    public String getValorTotalDasFerramentas() {
-        double soma = 0;
-
-        try {
-            String query = "SELECT SUM(preco) FROM tb_ferramentas";
-            PreparedStatement statement = dao.DatabaseConnection.getConexao().prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                soma = resultSet.getDouble(1);
-            }
-        } catch (SQLException ex) {
-            System.out.println("Erro:" + ex);
-        }
-        String format = String.format("%.2f", soma);
-        return format;
     }
 }
