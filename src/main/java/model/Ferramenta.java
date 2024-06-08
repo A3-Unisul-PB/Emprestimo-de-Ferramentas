@@ -9,6 +9,7 @@ public class Ferramenta {
      * Atributos.
      */
     private int id;
+    private int idEmprestimo;
     private String nome;
     private String marca;
     private double preco;
@@ -18,7 +19,7 @@ public class Ferramenta {
      * Construtor de Objeto Vazio.
      */
     public Ferramenta() {
-        this(0, "", "", 0.0);
+        this(0, 0, "", "", 0.0);
     }
 
     /**
@@ -30,9 +31,10 @@ public class Ferramenta {
      * @param marca - Marca da ferramenta.
      * @param preco - Preço da ferramenta.
      */
-    public Ferramenta(int id, String nome, String marca, double preco) {
+    public Ferramenta(int id, int idEmprestimo, String nome, String marca, double preco) {
         this.id = id;
         this.nome = nome;
+        this.idEmprestimo = idEmprestimo;
         this.marca = marca;
         this.preco = preco;
         dao = new FerramentaDAO();
@@ -54,6 +56,14 @@ public class Ferramenta {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdEmprestimo() {
+        return idEmprestimo;
+    }
+
+    public void setIdEmprestimo(int idEmprestimo) {
+        this.idEmprestimo = idEmprestimo;
     }
 
     /**
@@ -140,7 +150,7 @@ public class Ferramenta {
      */
     public boolean insertFerramentaBD(String nome, String marca, double preco) {
         int id = this.maiorID() + 1;
-        Ferramenta objeto = new Ferramenta(id, nome, marca, preco);
+        Ferramenta objeto = new Ferramenta(id, idEmprestimo, nome, marca, preco);
         dao.insertFerramentaBD(objeto);
         return true;
 
@@ -168,7 +178,7 @@ public class Ferramenta {
      * contrário.
      */
     public boolean updateFerramentaBD(int id, String nome, String marca, double preco) {
-        Ferramenta objeto = new Ferramenta(id, nome, marca, preco);
+        Ferramenta objeto = new Ferramenta(id, idEmprestimo, nome, marca, preco);
         dao.updateFerramentaBD(objeto);
         return true;
     }
