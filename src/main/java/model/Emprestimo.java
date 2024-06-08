@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import dao.EmprestimoDAO;
 
 public class Emprestimo {
-
     private int id, idAmigo, idFerramenta;
     private EmprestimoDAO dao;
-
     private Date dataEmprestimo;
     private Date dataLimite;
     private Date dataFinalizado;
@@ -83,6 +81,10 @@ public class Emprestimo {
 
     public void setDataFinalizado(Date dataFinalizado) {
         this.dataFinalizado = dataFinalizado;
+    }
+
+    public void setAmigo(int idAmigo) {
+        this.idAmigo = idAmigo;
     }
 
     public ArrayList<Emprestimo> getListaEmprestimos() {
