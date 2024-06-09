@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import model.Ferramenta;
 
 /**
@@ -98,7 +99,7 @@ public class FerramentaDAO {
      *
      * @param objeto - A ferramenta a ser inserida.
      * @return - Verdadeiro se a inserção foi bem-sucedida, falso caso
-     * contrário.
+     *         contrário.
      */
     public boolean insertFerramentaBD(Ferramenta objeto) {
         String sql = "INSERT INTO tb_ferramentas(id_ferramenta,nome,marca,preco) VALUES(?,?,?,?)";
@@ -129,6 +130,7 @@ public class FerramentaDAO {
     public boolean deleteFerramentaBD(int id) {
         try {
             Statement stmt = db.getConexao().createStatement();
+            stmt.executeUpdate("DELETE FROM tb_emprestimos WHERE id_ferramenta = " + id);
             stmt.executeUpdate("DELETE FROM tb_ferramentas WHERE id_ferramenta = " + id);
             stmt.close();
 
@@ -143,7 +145,7 @@ public class FerramentaDAO {
      *
      * @param objeto - A ferramenta com os dados atualizados.
      * @return - Verdadeiro se a atualização foi bem-sucedida, falso caso
-     * contrário.
+     *         contrário.
      */
     public boolean updateFerramentaBD(Ferramenta objeto) {
 

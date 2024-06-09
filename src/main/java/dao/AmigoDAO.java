@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import model.Amigo;
 
 /**
@@ -131,6 +132,7 @@ public class AmigoDAO {
     public boolean deleteAmigoBD(int id) {
         try {
             Statement stmt = db.getConexao().createStatement();
+            stmt.executeUpdate("DELETE FROM tb_emprestimos WHERE id_amigo = " + id);
             stmt.executeUpdate("DELETE FROM tb_amigos WHERE id_amigo = " + id);
             stmt.close();
 
