@@ -213,6 +213,7 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
             carregaTabela();
+            precoTotal.setText("R$" + dao.valorTotal());
         }
     }//GEN-LAST:event_JBApagarActionPerformed
 
@@ -271,6 +272,7 @@ public class FrmGerenciarFerramentas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
             carregaTabela();
+            precoTotal.setText("R$" + dao.valorTotal());
         }
     }//GEN-LAST:event_JBEditarActionPerformed
 

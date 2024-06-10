@@ -269,7 +269,7 @@ public class EmprestimoDAO {
              * Executa a consulta SQL para obter os empréstimos que ainda não
              * foram entregues
              */
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos WHERE entregue is false");
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos WHERE entregue is false AND data_devolucao >= NOW()");
             /**
              * Itera sobre o resultado da consulta
              */
