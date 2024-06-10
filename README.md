@@ -47,7 +47,7 @@ Integrantes:
 - [ ] NE004 - Data de devolução de uma ferramenta emprestada não pode ser anterior à data de empréstimo.
 
 ---
-Versões
+### Versões
 - Apache NetBeans IDE 17
 - Java 8
 - Windows 10
