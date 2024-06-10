@@ -1,7 +1,7 @@
-package view;
+package visao;
 
 import java.util.ArrayList;
-import model.Amigo;
+import modelo.Amigo;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

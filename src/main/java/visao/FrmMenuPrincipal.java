@@ -1,4 +1,4 @@
-package view;
+package visao;
 
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 

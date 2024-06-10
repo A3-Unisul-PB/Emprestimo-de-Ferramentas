@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.Amigo;
+import modelo.Amigo;
 
 /**
  * Classe responsável pelo acesso aos dados dos amigos no banco de dados.
@@ -24,7 +24,7 @@ public class AmigoDAO {
     /**
      * Objeto responsável pela conexão com o banco de dados.
      */
-    private DatabaseConnection db;
+    private ConexaoBancoDeDados db;
 
     /**
      * Construtor da classe AmigoDAO.
@@ -32,7 +32,7 @@ public class AmigoDAO {
      * Inicializa a conexão com o banco de dados.
      */
     public AmigoDAO() {
-        this.db = new DatabaseConnection();
+        this.db = new ConexaoBancoDeDados();
     }
 
     /**
@@ -203,7 +203,7 @@ public class AmigoDAO {
              * Prepara uma consulta SQL para obter o ID do amigo pelo nome
              */
             String query = "SELECT id_amigo FROM tb_amigos WHERE nome = ?";
-            PreparedStatement statement = DatabaseConnection.getConexao().prepareStatement(query);
+            PreparedStatement statement = ConexaoBancoDeDados.getConexao().prepareStatement(query);
             statement.setString(1, nome);
             ResultSet resultSet = statement.executeQuery();
 

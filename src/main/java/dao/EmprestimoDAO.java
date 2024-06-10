@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Emprestimo;
+import modelo.Emprestimo;
 
 public class EmprestimoDAO {
 
@@ -27,7 +27,7 @@ public class EmprestimoDAO {
     /**
      * Conexão com o banco de dados
      */
-    private DatabaseConnection connect;
+    private ConexaoBancoDeDados connect;
 
     /**
      * Método para obter a lista completa de empréstimos

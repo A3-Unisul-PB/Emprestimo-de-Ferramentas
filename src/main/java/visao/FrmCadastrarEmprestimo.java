@@ -1,8 +1,8 @@
-package view;
+package visao;
 
 import com.google.protobuf.TextFormat;
 import dao.AmigoDAO;
-import dao.DatabaseConnection;
+import dao.ConexaoBancoDeDados;
 import dao.EmprestimoDAO;
 import dao.FerramentaDAO;
 import java.sql.Date;
@@ -14,10 +14,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Emprestimo;
-import model.Ferramenta;
-import model.UtilData;
-import model.UtilData;
+import modelo.Emprestimo;
+import modelo.Ferramenta;
+import modelo.UtilData;
+import modelo.UtilData;
 
 public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
 
@@ -29,7 +29,7 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
     private EmprestimoDAO daoEmp;
     private boolean countData = true;
     private Emprestimo objetoEmprestimo;
-    private DatabaseConnection db;
+    private ConexaoBancoDeDados db;
     public ArrayList<String> FerSelect;
 
     /**
@@ -39,7 +39,7 @@ public class FrmCadastrarEmprestimo extends javax.swing.JFrame {
         initComponents();
         String data = UtilData.dataAtual().toString();
         JTFDataEmp.setText(data);
-        db = new DatabaseConnection();
+        db = new ConexaoBancoDeDados();
         this.objetoEmprestimo = new Emprestimo();
         this.daoAmg = new AmigoDAO();
         this.dao = new FerramentaDAO();

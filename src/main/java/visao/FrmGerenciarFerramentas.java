@@ -1,4 +1,4 @@
-package view;
+package visao;
 
 import dao.FerramentaDAO;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Ferramenta;
+import modelo.Ferramenta;
 
 public class FrmGerenciarFerramentas extends javax.swing.JFrame {
 

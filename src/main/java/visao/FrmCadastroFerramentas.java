@@ -1,7 +1,7 @@
-package view;
+package visao;
 
 import java.sql.Connection;
-import model.Ferramenta;
+import modelo.Ferramenta;
 import javax.swing.JOptionPane;
 
 public class FrmCadastroFerramentas extends javax.swing.JFrame {

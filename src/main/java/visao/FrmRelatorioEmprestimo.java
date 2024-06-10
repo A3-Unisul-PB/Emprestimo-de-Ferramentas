@@ -1,10 +1,10 @@
-package view;
+package visao;
 
-import dao.DatabaseConnection;
+import dao.ConexaoBancoDeDados;
 import dao.EmprestimoDAO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Emprestimo;
+import modelo.Emprestimo;
 
 public class FrmRelatorioEmprestimo extends javax.swing.JFrame {
 

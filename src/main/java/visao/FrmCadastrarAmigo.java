@@ -1,7 +1,7 @@
-package view;
+package visao;
 
 import javax.swing.JOptionPane;
-import model.Amigo;
+import modelo.Amigo;
 
 public class FrmCadastrarAmigo extends javax.swing.JFrame {
 

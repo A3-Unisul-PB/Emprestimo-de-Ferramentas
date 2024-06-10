@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.Ferramenta;
+import modelo.Ferramenta;
 
 /**
  * Classe responsável pela manipulação de dados das ferramentas no banco de
@@ -22,14 +22,14 @@ public class FerramentaDAO {
     public ArrayList<Ferramenta> minhaLista = new ArrayList<>();
     public ArrayList<Ferramenta> ListaFerramentasDisponiveis = new ArrayList<>();
 
-    private DatabaseConnection db;
+    private ConexaoBancoDeDados db;
 
     /**
      * Construtor da classe FerramentaDAO. Inicializa a conexão com o banco de
      * dados.
      */
     public FerramentaDAO() {
-        this.db = new DatabaseConnection();
+        this.db = new ConexaoBancoDeDados();
     }
 
     /**
@@ -255,7 +255,7 @@ public class FerramentaDAO {
 
         try {
             String query = "SELECT SUM(preco) FROM tb_ferramentas";
-            PreparedStatement statement = DatabaseConnection.getConexao().prepareStatement(query);
+            PreparedStatement statement = ConexaoBancoDeDados.getConexao().prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {

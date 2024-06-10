@@ -1,7 +1,7 @@
-package view;
+package visao;
 
 import com.google.protobuf.TextFormat;
-import dao.DatabaseConnection;
+import dao.ConexaoBancoDeDados;
 import dao.EmprestimoDAO;
 import java.sql.Date;
 import java.text.ParseException;
@@ -9,8 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Emprestimo;
-import model.UtilData;
+import modelo.Emprestimo;
+import modelo.UtilData;
 
 public class FrmRelatorioPendente extends javax.swing.JFrame {
 

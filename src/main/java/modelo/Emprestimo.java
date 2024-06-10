@@ -1,4 +1,4 @@
-package model;
+package modelo;
 
 import dao.EmprestimoDAO;
 import java.sql.Date;

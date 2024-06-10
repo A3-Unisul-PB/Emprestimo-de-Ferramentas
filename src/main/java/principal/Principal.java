@@ -4,7 +4,7 @@
 package principal;
 
 // Importação da classe FrmMenuPrincipal do pacote view.
-import view.FrmMenuPrincipal;
+import visao.FrmMenuPrincipal;
 
 /**
  * A classe Principal é a classe principal do programa.

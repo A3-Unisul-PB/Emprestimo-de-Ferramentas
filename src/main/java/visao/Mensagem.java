@@ -1,7 +1,7 @@
 /**
  * O pacote view contém a classe Mensagem.
  */
-package view;
+package visao;
 
 /**
  * A classe Mensagem é uma subclasse da classe Exception.
