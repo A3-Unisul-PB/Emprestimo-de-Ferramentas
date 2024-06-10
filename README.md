@@ -47,3 +47,6 @@ Integrantes:
 - [ ] NE004 - Data de devolução de uma ferramenta emprestada não pode ser anterior à data de empréstimo.
 
 ---
+
+### Link do Vídeo 
+https://drive.google.com/file/d/1GP0l1wKjGTQhprNHfRysSrwBB5U0KudH/view?usp=drivesdk
