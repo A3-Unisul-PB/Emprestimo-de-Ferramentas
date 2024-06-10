@@ -47,6 +47,11 @@ Integrantes:
 - [ ] NE004 - Data de devolução de uma ferramenta emprestada não pode ser anterior à data de empréstimo.
 
 ---
-
+Versões
+- Apache NetBeans IDE 17
+- Java 8
+- Windows 10
+- MySQL Workbench 8.0
+---
 ### Link do Vídeo 
 https://drive.google.com/file/d/1GP0l1wKjGTQhprNHfRysSrwBB5U0KudH/view?usp=drivesdk
