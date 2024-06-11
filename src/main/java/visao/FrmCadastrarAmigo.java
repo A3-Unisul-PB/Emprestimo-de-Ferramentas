@@ -32,11 +32,16 @@ public class FrmCadastrarAmigo extends javax.swing.JFrame {
         setTitle("Cadastro de Amigos");
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
         jPanel1.setToolTipText("Cadastrar Amigos");
         jPanel1.setName(""); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nome:");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Telefone:");
 
         btnCadastrar.setText("Cadastrar");
